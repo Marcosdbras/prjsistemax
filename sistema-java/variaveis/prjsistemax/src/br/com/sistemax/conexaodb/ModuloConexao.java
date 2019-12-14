@@ -20,7 +20,10 @@ public class ModuloConexao {
 
         java.sql.Connection conexao = null;
         String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://raosistemas.dyndns.org:3306/magazine";
+        //String url = "jdbc:mysql://raosistemas.dyndns.org:3306/magazine";
+        //String url = "jdbc:mysql://response.magazineloocalmais.com.br:3306/magazine";
+        String url = "jdbc:mysql://response.magazineloocalmais.com.br:3306/magazine?useTimezone=true&serverTimezone=UTC&useSSL=false";
+        
         String user = "rao";
         String password = "data3001";
         try {

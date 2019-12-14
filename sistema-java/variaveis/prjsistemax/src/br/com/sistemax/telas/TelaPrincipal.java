@@ -7,6 +7,8 @@ package br.com.sistemax.telas;
 
 import java.text.DateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -33,15 +35,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Desktop = new javax.swing.JDesktopPane();
         pnlinf = new javax.swing.JPanel();
         lbldata = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lbltitUsuario = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
         Menu = new javax.swing.JMenuBar();
         MenuCadastro = new javax.swing.JMenu();
+        menuUsuario = new javax.swing.JMenuItem();
         MenuLancamento = new javax.swing.JMenu();
         MenuContasPagar = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         MenuContasReceber = new javax.swing.JMenuItem();
+        menuRelatorio = new javax.swing.JMenu();
         MenuConf = new javax.swing.JMenu();
+        MenuOpcoes = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         MenuAjuda = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal - Sistema X");
@@ -74,9 +83,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGap(0, 16, Short.MAX_VALUE)
         );
 
+        lbldata.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbldata.setText("lbldata");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("Data Local:");
+
+        lbltitUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbltitUsuario.setText("Usuário:");
+
+        lblUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblUsuario.setText("lblUsuario");
+
         MenuCadastro.setText("Cadastros");
+
+        menuUsuario.setText("Usuário");
+        menuUsuario.setEnabled(false);
+        menuUsuario.setName("menuUsuario"); // NOI18N
+        MenuCadastro.add(menuUsuario);
+
         Menu.add(MenuCadastro);
 
         MenuLancamento.setText("Lançamentos");
@@ -93,14 +118,42 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         Menu.add(MenuLancamento);
 
+        menuRelatorio.setText("Relatórios");
+        menuRelatorio.setEnabled(false);
+        menuRelatorio.setName("menuRelatorio"); // NOI18N
+        Menu.add(menuRelatorio);
+
         MenuConf.setText("Configurações");
         Menu.add(MenuConf);
 
-        MenuAjuda.setText("Ajuda");
-        Menu.add(MenuAjuda);
+        MenuOpcoes.setText("Opções");
+        MenuOpcoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuOpcoesActionPerformed(evt);
+            }
+        });
 
-        jMenu6.setText("Sair");
-        Menu.add(jMenu6);
+        jMenuItem2.setText("Sair");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        MenuOpcoes.add(jMenuItem2);
+
+        Menu.add(MenuOpcoes);
+
+        MenuAjuda.setText("Ajuda");
+
+        jMenuItem3.setText("Sobre");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        MenuAjuda.add(jMenuItem3);
+
+        Menu.add(MenuAjuda);
 
         setJMenuBar(Menu);
 
@@ -108,12 +161,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlinf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbldata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbldata, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbltitUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblUsuario)
+                        .addGap(602, 602, 602))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -127,7 +188,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Desktop)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbldata))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbldata)
+                    .addComponent(jLabel1)
+                    .addComponent(lbltitUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUsuario)))
         );
 
         setSize(new java.awt.Dimension(916, 636));
@@ -143,6 +208,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lbldata.setText(formatador.format(data));
         
     }//GEN-LAST:event_formWindowActivated
+
+    private void MenuOpcoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuOpcoesActionPerformed
+ 
+    }//GEN-LAST:event_MenuOpcoesActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+               int sair = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair do sistema?","Atenção",JOptionPane.YES_NO_OPTION);
+        
+        if (sair == JOptionPane.YES_OPTION){
+        
+            System.exit(0);
+        
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+            
+            TelaSobre telasobre = new TelaSobre();
+            telasobre.setVisible(true);
+            
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,9 +274,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuContasPagar;
     private javax.swing.JMenuItem MenuContasReceber;
     private javax.swing.JMenu MenuLancamento;
-    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu MenuOpcoes;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    public static javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lbldata;
+    private javax.swing.JLabel lbltitUsuario;
+    public static javax.swing.JMenu menuRelatorio;
+    public static javax.swing.JMenuItem menuUsuario;
     private javax.swing.JPanel pnlinf;
     // End of variables declaration//GEN-END:variables
+
+    private int JOptionPane(Object object, String deseja_realmente_sair_do_sistema, int YES_NO_OPTION) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

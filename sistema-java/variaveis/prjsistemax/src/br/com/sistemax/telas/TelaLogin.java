@@ -4,49 +4,64 @@
  * and open the template in the editor.
  */
 package br.com.sistemax.telas;
+
 import java.sql.*;
 import br.com.sistemax.conexaodb.ModuloConexao;
+import java.awt.Color;
 import javax.swing.JOptionPane;
-
 
 /**
  *
  * @author WIN 8.1
  */
 public class TelaLogin extends javax.swing.JFrame {
-
-Connection conexao = null;
-PreparedStatement  pst = null;
-ResultSet rs = null;
-
-public void logar(){
-    String sql = "select * from senhas where usuario = ? and senha = ?";
-    try {
-        
-        pst = conexao.prepareStatement(sql);
-        pst.setString(1, txtUsuario.getText());
-        pst.setString(2, txtSenha.getText());
-        
-        rs = pst.executeQuery();
-        if (rs.next()){
-            TelaPrincipal principal = new TelaPrincipal();
-            principal.setVisible(true);
+    
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
+    public void logar() {
+        String sql = "select * from usuarios where usuario = ? and senha = ?";
+        try {
             
-            //Fecha form telalogin
-            this.dispose();
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtUsuario.getText());
+            pst.setString(2, txtSenha.getText());
             
-            //Fecha Conexao
-            conexao.close();
-        }else{
-            JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválido!");
+            rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                
+                TelaPrincipal principal = new TelaPrincipal();
+                
+                String perfil = rs.getString(5);
+                TelaPrincipal.lblUsuario.setText(rs.getString(6));
+                
+                if (perfil.equals("ADMIN")) {
+                    
+                    TelaPrincipal.menuRelatorio.setEnabled(true);
+                    TelaPrincipal.menuUsuario.setEnabled(true);
+                    TelaPrincipal.lblUsuario.setForeground(Color.red);
+                    
+                }
+                
+                principal.setVisible(true);
+
+                //Fecha form telalogin
+                this.dispose();
+
+                //Fecha Conexao
+                conexao.close();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválido!");
+            }
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, e);
         }
         
-    } catch (Exception e) {
-        
-        JOptionPane.showMessageDialog(null, e);
     }
-    
-}
 
     /**
      * Creates new form TelaLogin
@@ -55,10 +70,10 @@ public void logar(){
         initComponents();
         conexao = ModuloConexao.conector();
         //System.out.println(conexao);
-        if (conexao != null){
+        if (conexao != null) {
             lblstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sistemax/icones/database-lightning-icon.png")));
             lblstatus.setText("Conectado");
-        }else{
+        } else {
             lblstatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/sistemax/icones/Database-Remove-icon.png")));
             lblstatus.setText("Desconectado");
         }
@@ -155,7 +170,7 @@ public void logar(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-       
+        
         logar();
         
     }//GEN-LAST:event_btnLoginActionPerformed
