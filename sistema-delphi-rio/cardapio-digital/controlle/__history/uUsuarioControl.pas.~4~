@@ -1,0 +1,42 @@
+unit uUsuarioControl;
+
+interface
+uses System.SysUtils, uUsuarioModel, FireDac.Comp.Client;
+
+   type TUsuarioControl = class
+      private
+         FUsuarioModel :  TUsuarioModel;
+      public
+
+         constructor create;
+         Destructor Destroy; override;
+         function obterUsuarios:TFDQuery;
+
+
+   end;
+implementation
+
+
+
+{ TUsuarioControl }
+
+constructor TUsuarioControl.create;
+begin
+  FUsuarioModel := TUsuarioModel.Create;
+end;
+
+destructor TUsuarioControl.Destroy;
+begin
+
+  FreeAndNil(FUsuarioModel);
+
+  inherited;
+
+end;
+
+function TUsuarioControl.obterUsuarios: TFDQuery;
+begin
+   Result := FUsuarioModel.obterUsuarios;
+end;
+
+end.

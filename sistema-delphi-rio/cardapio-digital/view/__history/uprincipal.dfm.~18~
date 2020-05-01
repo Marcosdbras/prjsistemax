@@ -1,0 +1,96 @@
+object frmprincipal: Tfrmprincipal
+  Left = 0
+  Top = 0
+  Caption = 'Controle Financeiro Pessoal'
+  ClientHeight = 396
+  ClientWidth = 764
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  object btnConexao: TButton
+    Left = 685
+    Top = 8
+    Width = 71
+    Height = 25
+    Caption = 'Conex'#227'o'
+    TabOrder = 0
+    Visible = False
+    OnClick = btnConexaoClick
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 377
+    Width = 764
+    Height = 19
+    Panels = <
+      item
+        Width = 100
+      end
+      item
+        Width = 50
+      end>
+  end
+  object ActionMainMenuBar1: TActionMainMenuBar
+    Left = 0
+    Top = 0
+    Width = 764
+    Height = 25
+    UseSystemFont = False
+    ActionManager = ActionManager1
+    Caption = 'ActionMainMenuBar1'
+    Color = 16117735
+    ColorMap.ShadowColor = 14341060
+    ColorMap.Color = 16117735
+    ColorMap.DisabledColor = 15525341
+    ColorMap.DisabledFontColor = clGray
+    ColorMap.FontColor = clBlack
+    ColorMap.HighlightColor = 16771276
+    ColorMap.HotColor = 16771276
+    ColorMap.HotFontColor = clBlack
+    ColorMap.MenuColor = 16117735
+    ColorMap.FrameTopLeftInner = 14341060
+    ColorMap.FrameTopLeftOuter = 14341060
+    ColorMap.FrameBottomRightInner = 14341060
+    ColorMap.FrameBottomRightOuter = 14341060
+    ColorMap.BtnFrameColor = 15457483
+    ColorMap.BtnSelectedColor = 16771276
+    ColorMap.BtnSelectedFont = clBlack
+    ColorMap.SelectedColor = 16771276
+    ColorMap.UnusedColor = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    Spacing = 0
+  end
+  object ActionManager1: TActionManager
+    ActionBars = <
+      item
+        Items = <
+          item
+            Items = <
+              item
+                Action = Action2
+              end>
+            Caption = '&Cadastro'
+          end>
+        ActionBar = ActionMainMenuBar1
+      end>
+    Left = 648
+    Top = 280
+    StyleName = 'IDE Theme Style'
+    object Action2: TAction
+      Category = '&Cadastro'
+      Caption = '&Usu'#225'rios'
+    end
+  end
+end

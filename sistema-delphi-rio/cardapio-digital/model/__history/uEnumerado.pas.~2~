@@ -1,0 +1,7 @@
+unit uEnumerado;
+
+interface
+   type  TEnumerado = (tpincluir,  tpalterar, tpexcluir,   tplistagem, tpindefinido);
+implementation
+
+end.

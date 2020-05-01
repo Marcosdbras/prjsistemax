@@ -1,0 +1,71 @@
+unit uSistemaControl;
+
+//Controle de conexão
+
+interface
+uses System.SysUtils,  uconexao, uUsuarioModel;
+
+    type
+    TSistemaControl = class
+    private
+      FConexao : TConexao;
+      FUsuarioModel : TUsuarioModel;
+      class var FInstance: TSistemaControl;
+
+    public
+       constructor Create;
+       destructor  Destroy; override; //sobrecarga
+
+       procedure setUsuario(aCodigo:integer);
+       procedure CarregarUsuario;
+
+       class function  GetInstace:TSistemaControl;
+
+    property Conexao : TConexao read FConexao write FConexao;
+    property UsuarioModel : TUsuarioModel read FUsuarioModel write FUsuarioModel;
+
+    end;
+implementation
+
+{ TSistemaControl }
+
+
+
+
+
+procedure TSistemaControl.CarregarUsuario;
+begin
+
+end;
+
+constructor TSistemaControl.Create;
+begin
+  FConexao := TConexao.Create;
+  FUsuarioModel := TUsuarioModel.Create();
+end;
+
+destructor TSistemaControl.Destroy;
+begin
+
+  freeandNil(FUsuarioModel);
+  FreeAndNil(FConexao);
+  inherited;
+
+end;
+
+class function TSistemaControl.GetInstace: TSistemaControl;
+begin
+  if not Assigned(Self.FInstance) then
+  begin
+    Self.FInstance := TSistemaControl.Create;
+  end;
+
+  result := Self.FInstance;
+end;
+
+procedure TSistemaControl.setUsuario(aCodigo: integer);
+begin
+
+end;
+
+end.

@@ -1,0 +1,2 @@
+https://dev.mysql.com/downloads/file/?id=489462
+https://dev.mysql.com/downloads/connector/j/

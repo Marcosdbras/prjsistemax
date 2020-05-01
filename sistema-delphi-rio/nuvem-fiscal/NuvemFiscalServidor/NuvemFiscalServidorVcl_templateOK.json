@@ -1,0 +1,38 @@
+{
+    "Producao": false,
+    "BaseUrl": "http://+:2001/tms/nuvemfiscal/",
+    "JwtSecret": "seu-segredo-para-token-autenticacao",
+    "Emitente": {
+        "CNPJ": "11077448000120",
+        "InscricaoMunicipal": "",
+        "InscricaoEstadual": "118967001118",
+        "RazaoSocial": "Magazine Eletrica eletronico e construção",
+        "Fantasia": "Magazine Eletrico",
+        "Fone": "(11) 2609-0810",
+        "CEP": "02717000",
+        "Logradouro": "Av. Inajar de Souza",
+        "Numero": "1689",
+        "Complemento": "",
+        "Bairro": "Limao",
+        "CodCidade": 3550308,
+        "Cidade": "SAO PAULO",
+        "UF": "SP"
+    },
+    "Certificado": {
+        "ArquivoPFX": "C:\\pasta\\arquivo-certificado.pfx",
+        "Senha": "SenhaCertificado",
+        "NumeroSerie": "05 f4 d6 8b 89 6d b6 d5"
+    },
+    "NFCe": {
+        "PathSchemas": "C:\\componentes\\ACBr\\Exemplos\\ACBrDFe\\Schemas\\NFe",
+        "PathArquivos": "C:\\XML-TESTES",
+        "DANFEFastFile": "C:\\nfe\\Report\\DANFeNFCe5_00.fr3",
+        "CSC": "ACBDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        "ResponsavelTecnicoEmissao": {
+            "CNPJ": "123456780000199",
+            "Contato": "Nome responsavel",
+            "Email": "E-mail responsavel",
+            "Fone": "11999999999"
+    }
+  }
+}

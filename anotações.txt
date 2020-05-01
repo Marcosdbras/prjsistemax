@@ -1,0 +1,1 @@
+1) Para dar baixa no estoque sem duplicidade deve-se considar statuspedido = 'F' e status <> 'NF-E EMITIDA'

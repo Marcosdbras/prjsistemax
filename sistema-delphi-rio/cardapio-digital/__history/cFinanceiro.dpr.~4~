@@ -1,0 +1,20 @@
+program cFinanceiro;
+
+uses
+  Vcl.Forms,
+  uprincipal in 'view\uprincipal.pas' {frmprincipal},
+  uconexao in 'dao\uconexao.pas',
+  uSistemaControl in 'controlle\uSistemaControl.pas',
+  uUsuarioModel in 'model\uUsuarioModel.pas',
+  uUsuarioDao in 'dao\uUsuarioDao.pas',
+  uEnumerado in 'model\uEnumerado.pas',
+  uClienteModel in 'model\uClienteModel.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfrmprincipal, frmprincipal);
+  Application.Run;
+end.

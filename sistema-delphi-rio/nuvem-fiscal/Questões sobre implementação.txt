@@ -1,0 +1,3 @@
+1 Um executável servidor para diversas empresas?
+2 Servidor temporário debug delphi TMS sparkel?
+3 Debug F12 no browse em pascal?

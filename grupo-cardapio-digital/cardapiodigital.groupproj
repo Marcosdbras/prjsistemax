@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{DB6BC1A9-8EF8-4E07-917A-B493BD85EA10}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\sistema-cardapio-digital\CardapioDigital.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\sistema-cardapio-digital-server\Server.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CardapioDigital">
+        <MSBuild Projects="..\sistema-cardapio-digital\CardapioDigital.dproj"/>
+    </Target>
+    <Target Name="CardapioDigital:Clean">
+        <MSBuild Projects="..\sistema-cardapio-digital\CardapioDigital.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CardapioDigital:Make">
+        <MSBuild Projects="..\sistema-cardapio-digital\CardapioDigital.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Server">
+        <MSBuild Projects="..\sistema-cardapio-digital-server\Server.dproj"/>
+    </Target>
+    <Target Name="Server:Clean">
+        <MSBuild Projects="..\sistema-cardapio-digital-server\Server.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Server:Make">
+        <MSBuild Projects="..\sistema-cardapio-digital-server\Server.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CardapioDigital;Server"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CardapioDigital:Clean;Server:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CardapioDigital:Make;Server:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

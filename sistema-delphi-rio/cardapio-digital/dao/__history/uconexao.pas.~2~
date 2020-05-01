@@ -1,0 +1,10 @@
+unit uconexao;
+
+interface
+  type TConexao = class
+
+  end;
+
+implementation
+
+end.

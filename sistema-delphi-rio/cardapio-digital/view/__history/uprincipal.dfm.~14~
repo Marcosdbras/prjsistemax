@@ -1,0 +1,43 @@
+object frmprincipal: Tfrmprincipal
+  Left = 0
+  Top = 0
+  Caption = 'Controle Financeiro Pessoal'
+  ClientHeight = 396
+  ClientWidth = 764
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  object btnConexao: TButton
+    Left = 685
+    Top = 8
+    Width = 71
+    Height = 25
+    Caption = 'Conex'#227'o'
+    TabOrder = 0
+    Visible = False
+    OnClick = btnConexaoClick
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 377
+    Width = 764
+    Height = 19
+    Panels = <
+      item
+        Width = 300
+      end
+      item
+        Width = 50
+      end>
+    ExplicitTop = 182
+    ExplicitWidth = 447
+  end
+end

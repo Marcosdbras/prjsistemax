@@ -1,0 +1,16 @@
+program cfin;
+
+uses
+  Vcl.Forms,
+  uprincipal in 'view\uprincipal.pas' {frmprincipal},
+  uconexao in 'dao\uconexao.pas',
+  uSistemaControl in 'controlle\uSistemaControl.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfrmprincipal, frmprincipal);
+  Application.Run;
+end.

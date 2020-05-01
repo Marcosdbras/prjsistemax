@@ -1,0 +1,34 @@
+unit uUsuarioControl;
+
+interface
+uses System.SysUtils, uUsuarioModel;
+
+   type TUsuarioControl = class
+      private
+         FUsuarioModel :  TUsuarioModel;
+      public
+         constructor create;
+         Destructor Destroy; override;
+
+   end;
+implementation
+
+
+
+{ TUsuarioControl }
+
+constructor TUsuarioControl.create;
+begin
+  FUsuarioModel := TUsuarioModel.Create;
+end;
+
+destructor TUsuarioControl.Destroy;
+begin
+
+  FreeAndNil(FUsuarioModel);
+
+  inherited;
+
+end;
+
+end.

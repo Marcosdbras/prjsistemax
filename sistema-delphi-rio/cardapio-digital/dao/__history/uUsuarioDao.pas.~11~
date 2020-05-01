@@ -1,0 +1,71 @@
+unit uUsuarioDao;
+
+interface
+  uses  System.SysUtils,  FireDac.Comp.Client,  uUsuarioModel;
+
+
+
+  type TUsuarioDao = class
+
+
+
+        procedure carregar(AUsuarioModel:TUsuarioModel; aCodigo:integer);  //overload;
+        function obterUsuarios:TFDQuery;
+  end;
+
+implementation
+
+
+
+{ TUsuarioDao }
+
+uses uSistemaControl;
+
+
+procedure TUsuarioDao.carregar(AUsuarioModel: TUsuarioModel; aCodigo:integer);
+var
+   vQuery:TFDQuery;
+begin
+   vQuery := tsistemacontrol.GetInstace().Conexao.CriarQuery;
+   try
+
+     vQuery.Open('select codigo, nome, senha, caminhoarquivofoto, email, celular, telefone from usuario where codigo = :codigo',[acodigo]);
+
+     try
+       AUsuarioModel.codigo := vQuery.FieldByName('codigo').AsInteger;
+       AUsuarioModel.nome := vQuery.FieldByName('nome').AsString;
+       AUsuarioModel.senha := vQuery.FieldByName('caminhoarquivofoto').AsString;
+       AUsuarioModel.email := vQuery.FieldByName('email').AsString;
+       AUsuarioModel.celular := vQuery.FieldByName('celular').AsString;
+       AUsuarioModel.telefone := vQuery.FieldByName('telefone').AsString;
+     finally
+       vquery.Close;
+     end;
+
+   finally
+      FreeAndNil(vQuery);
+   end;
+
+end;
+
+
+
+
+     //vQuery.Params.ParamByName('codigo').AsInteger := aCodigo;
+     //vQuery.Close;
+     //vQuery.SQL.Clear;
+     //vQuery.SQL.Add('select codigo, nome, senha, caminhoarquivofoto, email, celular, telefone from usuario where codigo = :codigo');
+     //vQuery.Params.ParamByName('codigo').AsInteger := aCodigo;
+     //vQuery.Open;
+
+
+     //vQuery.Open('select codigo, nome, senha, caminhoarquivofoto, email, celular, telefone from usuario');
+
+function TUsuarioDao.obterUsuarios: TFDQuery;
+var
+  vQuery: TFDQuery;
+begin
+
+end;
+
+end.

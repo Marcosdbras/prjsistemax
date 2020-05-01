@@ -1,0 +1,168 @@
+unit uUsuarioDao;
+
+interface
+  uses  System.SysUtils,  FireDac.Comp.Client,  uUsuarioModel, uconexao;
+
+
+
+  type TUsuarioDao = class
+       private
+          FConexao : TConexao;
+
+       public
+         constructor create;
+         procedure carregar(AUsuarioModel:TUsuarioModel; aCodigo:integer);  //overload;
+         function obterUsuarios:TFDQuery;
+         function incluirUsuario(aUsuarioModel:TUsuarioModel):boolean;
+         function alterarUsuario(aUsuarioModel:TUsuarioModel):boolean;
+         function excluirUsuario(aUsuarioModel:TUsuarioModel):boolean;
+  end;
+
+implementation
+
+
+
+{ TUsuarioDao }
+
+uses uSistemaControl;
+
+
+constructor TUsuarioDao.create;
+begin
+  FConexao := TSistemaControl.GetInstace().conexao;
+end;
+
+procedure TUsuarioDao.carregar(AUsuarioModel: TUsuarioModel; aCodigo:integer);
+var
+   vQuery:TFDQuery;
+begin
+   vQuery := tsistemacontrol.GetInstace().Conexao.CriarQuery;
+   try
+
+     vQuery.Open('select codigo, nome, senha, caminhoarquivofoto, email, celular, telefone from usuario where codigo = :codigo',[acodigo]);
+
+     try
+       AUsuarioModel.codigo := vQuery.FieldByName('codigo').AsInteger;
+       AUsuarioModel.nome := vQuery.FieldByName('nome').AsString;
+       AUsuarioModel.senha := vQuery.FieldByName('caminhoarquivofoto').AsString;
+       AUsuarioModel.email := vQuery.FieldByName('email').AsString;
+       AUsuarioModel.celular := vQuery.FieldByName('celular').AsString;
+       AUsuarioModel.telefone := vQuery.FieldByName('telefone').AsString;
+     finally
+       vquery.Close;
+     end;
+
+   finally
+      FreeAndNil(vQuery);
+   end;
+
+end;
+
+//vQuery.Params.ParamByName('codigo').AsInteger := aCodigo;
+//vQuery.Close;
+//vQuery.SQL.Clear;
+//vQuery.SQL.Add('select codigo, nome, senha, caminhoarquivofoto, email, celular, telefone from usuario where codigo = :codigo');
+//vQuery.Params.ParamByName('codigo').AsInteger := aCodigo;
+//vQuery.Open;
+//vQuery.Open('select codigo, nome, senha, caminhoarquivofoto, email, celular, telefone from usuario');
+
+
+function TUsuarioDao.excluirUsuario(aUsuarioModel: TUsuarioModel): boolean;
+var
+  vQuery: TFDQuery;
+begin
+
+vQuery := FConexao.CriarQuery;
+
+try
+
+  vQuery.Params.ParamByName('codigo').AsInteger :=  aUsuarioModel.codigo;
+
+  VQuery.ExecSQL( 'delete from usuario where codigo = :codigo');
+
+  result := true;
+finally
+  FreeAndNil(vQuery);
+end;
+
+
+
+end;
+
+
+function TUsuarioDao.alterarUsuario(aUsuarioModel: TUsuarioModel): boolean;
+var
+  vQuery: TFDQuery;
+begin
+
+vQuery := FConexao.CriarQuery;
+
+try
+
+  //vQuery.Params.ParamByName('nome').AsString := aUsuarioModel.nome;
+  //vQuery.Params.ParamByName('senha').AsString := aUsuarioModel.senha;
+  //vQuery.Params.ParamByName('caminhoarquivofoto').AsString := aUsuarioModel.caminhoarquivofoto;
+  //vQuery.Params.ParamByName('email').AsString := aUsuarioModel.email;
+  //vQuery.Params.ParamByName('celular').AsString := aUsuarioModel.celular;
+  //vQuery.Params.ParamByName('telefone').AsString :=  aUsuarioModel.telefone;
+  //vQuery.Params.ParamByName('codigo').AsInteger :=  aUsuarioModel.codigo;
+
+  VQuery.ExecSQL( 'update usuario set nome = :nome, senha = :senha, caminhoarquivofoto = :caminhoarquivofoto, email = :email, celular = :celular, telefone = :telefone where codigo = :codigo');
+
+  result := true;
+finally
+  FreeAndNil(vQuery);
+end;
+
+
+
+end;
+
+
+function TUsuarioDao.incluirUsuario(aUsuarioModel:TUsuarioModel): boolean;
+var
+  vQuery: TFDQuery;
+begin
+
+vQuery := FConexao.CriarQuery;
+
+try
+
+  vQuery.Close;
+  vQuery.SQL.Clear;
+  vQuery.SQL.Add('insert into usuario( nome, senha, caminhoarquivofoto, email, celular, telefone) values ( :nome, :senha, :caminhoarquivofoto, :email, :celular, :telefone)');
+  vQuery.Params.ParamByName('nome').AsString := aUsuarioModel.nome;
+  vQuery.Params.ParamByName('senha').AsString := aUsuarioModel.senha;
+  vQuery.Params.ParamByName('caminhoarquivofoto').AsString := aUsuarioModel.caminhoarquivofoto;
+  vQuery.Params.ParamByName('email').AsString := aUsuarioModel.email;
+  vQuery.Params.ParamByName('celular').AsString := aUsuarioModel.celular;
+  vQuery.Params.ParamByName('telefone').AsString :=  aUsuarioModel.telefone;
+  vQuery.ExecSQL;
+
+
+
+  //VQuery.ExecSQL( 'insert into usuario( nome, senha, caminhoarquivofoto, email, celular, telefone) values ( :nome, :senha, :caminhoarquivofoto, :email, :celular, :telefone)',[aUsuarioModel.nome, aUsuarioModel.senha, aUsuarioModel.caminhoarquivofoto, aUsuarioModel.email, aUsuarioModel.celular, aUsuarioModel.telefone ]);
+
+  result := true;
+finally
+  FreeAndNil(vQuery);
+end;
+
+
+
+end;
+
+function TUsuarioDao.obterUsuarios: TFDQuery;
+var
+  vQuery: TFDQuery;
+begin
+
+vQuery := FConexao.CriarQuery;
+
+VQuery.Open( 'select codigo, nome, senha, caminhoarquivofoto, email, celular, telefone from usuario');
+
+Result := vQuery;
+
+end;
+
+end.

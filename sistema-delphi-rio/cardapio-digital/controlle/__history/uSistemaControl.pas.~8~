@@ -1,0 +1,69 @@
+unit uSistemaControl;
+
+interface
+uses System.SysUtils,  uconexao, uUsuarioModel;
+
+    type
+    TSistemaControl = class
+    private
+      FConexao : TConexao;
+      FUsuario : TUsuario;
+      class var FInstance: TSistemaControl;
+
+    public
+       constructor Create();
+       destructor  Destroy; override;
+
+       procedure setUsuario(aCodigo:integer);
+       procedure CarregarUsuario;
+
+       class function  GetInstace:TSistemaControl;
+
+    property Conexao : TConexao read FConexao write FConexao;
+    property Usuario : TUsuario read FUsuario write FUsuario;
+
+    end;
+implementation
+
+{ TSistemaControl }
+
+
+
+
+
+procedure TSistemaControl.CarregarUsuario;
+begin
+
+end;
+
+constructor TSistemaControl.Create;
+begin
+  FConexao := TConexao.Create;
+  FUsuario := TUsuario.Create();
+end;
+
+destructor TSistemaControl.Destroy;
+begin
+
+  freeandNil(FUsuario);
+  FreeAndNil(FConexao);
+  inherited;
+
+end;
+
+class function TSistemaControl.GetInstace: TSistemaControl;
+begin
+  if not Assigned(Self.FInstance) then
+  begin
+    Self.FInstance := TSistemaControl.Create;
+  end;
+
+  result := Self.FInstance;
+end;
+
+procedure TSistemaControl.setUsuario(aCodigo: integer);
+begin
+
+end;
+
+end.
