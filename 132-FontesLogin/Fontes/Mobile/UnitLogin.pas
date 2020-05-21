@@ -9,7 +9,7 @@ uses
   REST.Types, REST.Client, REST.Authenticator.Basic, Data.Bind.Components,
   Data.Bind.ObjectScope, System.JSON, FMX.TabControl, System.Actions,
   FMX.ActnList, FMX.MediaLibrary.Actions, FMX.StdActns, u99Permissions,
-  System.NetEncoding;
+  System.NetEncoding, uMD5;
 
 type
   TFrmLogin = class(TForm)
@@ -247,7 +247,7 @@ begin
             // Consumir WS Login...
             RequestLogin.Params.Clear;
             RequestLogin.AddParameter('email', edt_email.Text);
-            RequestLogin.AddParameter('senha', edt_senha.Text);
+            RequestLogin.AddParameter('senha', MD5(edt_senha.Text));
             RequestLogin.ExecuteAsync(ProcessaLogin, true, true, ProcessaLoginErro);
         end
         else
@@ -258,7 +258,7 @@ begin
 
             RequestConta.Params.Clear;
             RequestConta.AddParameter('email', edt_cad_email.Text);
-            RequestConta.AddParameter('senha', edt_cad_senha.Text);
+            RequestConta.AddParameter('senha', MD5(edt_cad_senha.Text));
             RequestConta.AddParameter('foto', foto64);
             RequestConta.ExecuteAsync(ProcessaConta, true, true, ProcessaLoginErro);
         end;

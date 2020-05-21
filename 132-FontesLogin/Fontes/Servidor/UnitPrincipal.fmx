@@ -38,8 +38,13 @@ object FrmPrincipal: TFrmPrincipal
       
         'Access-Control-Allow-Headers:Content-Type, Origin, Accept, Autho' +
         'rization, X-CUSTOM-HEADER')
+    RequestTimeout = -1
     ServicePort = 8082
     ProxyOptions.Port = 8888
+    TokenOptions.Active = False
+    TokenOptions.ServerRequest = 'RESTDWServer01'
+    TokenOptions.TokenHash = 'RDWTS_HASH'
+    TokenOptions.LifeCycle = 30
     ServerParams.HasAuthentication = True
     ServerParams.UserName = 'admin'
     ServerParams.Password = 'admin'
