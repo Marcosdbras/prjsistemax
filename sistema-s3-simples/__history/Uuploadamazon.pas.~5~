@@ -1,0 +1,139 @@
+unit Uuploadamazon;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.Cloud.CloudAPI,
+  Data.Cloud.AmazonAPI, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    amz: TAmazonConnectionInfo;
+    btnbucket: TButton;
+    btnarquivo: TButton;
+    Upload: TButton;
+    Download: TButton;
+    Excluir: TButton;
+    btncriarbucket: TButton;
+    btnexcluirbucket: TButton;
+    ListBox1: TListBox;
+    ListBox2: TListBox;
+    Edit1: TEdit;
+    procedure FormCreate(Sender: TObject);
+    procedure btnbucketClick(Sender: TObject);
+    procedure btncriarbucketClick(Sender: TObject);
+    procedure UploadClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+
+     s3 : TAmazonStorageService;
+     s3Region : TAmazonRegion;
+     sRegion: String;
+
+
+  end;
+
+Const
+   AccessKey = 'AKIAIGLD5BQ6UZ263PTA';
+   SecretKey = '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';
+
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnbucketClick(Sender: TObject);
+var
+ResponseInfo :TCloudResponseInfo;
+StrTemp:Tstrings;
+I:Integer;
+begin
+  ResponseInfo := TCloudResponseInfo.Create;
+  try
+    ListBox1.Items.Clear;
+    StrTemp := s3.ListBuckets(ResponseInfo);
+    if assigned(StrTemp) then
+       begin
+         for I := 0 to Pred(StrTemp.Count) do
+            begin
+               ListBox1.Items.Add(StrTemp.Names[I]);
+            end;
+         //endfor
+
+      end;
+    //endiif
+
+
+  finally
+     FreeAndnil(ResponseInfo);
+     FreeAndNil(StrTemp);
+  end;
+end;
+
+procedure TForm1.btncriarbucketClick(Sender: TObject);
+var
+  ResponseInfo: TCloudResponseInfo;
+  StorageService: TAmazonStorageService;
+  BucketName:String;
+begin
+  BucketName := 'Arquivos-volume1'; // the bucket name must be unique
+  StorageService := TAmazonStorageService.Create(amz);
+  ResponseInfo := TCloudResponseInfo.Create;
+  try
+    if StorageService.CreateBucket(BucketName, amzbaNotSpecified, amzrNotSpecified, ResponseInfo) then
+      showmessage('Success! Bucket: ' + BucketName + ' created.')
+    else
+      showmessage(Format('Failure! %s', [ResponseInfo.StatusMessage]));
+  finally
+    StorageService.Free;
+    ResponseInfo.Free;
+  end;
+end;
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+ amz.AccountName := Accesskey;
+ amz.AccountKey := SecretKey;
+
+ s3 := TAmazonStorageService(amz);
+ sRegion := TAmazonStorageService.GetRegionString(s3Region);
+
+
+ label1.Caption := amz.StorageEndpoint;
+ label2.Caption := sRegion;
+end;
+
+procedure TForm1.UploadClick(Sender: TObject);
+var
+   StorageService:TAmazonStorageService;
+   ImgStream:TbytesStream;
+   MetaData:TStringList;
+   Response:TCloudResponseInfo;
+begin
+   try
+
+     StorageService := TAmazonStorageService.Create(amz);
+     Response := TCloudResponseInfo.Create;
+
+     MetaData := TStringList.Create;
+
+
+
+
+
+   finally
+     StorageService.DisposeOf;
+     ImgStream.DisposeOf;
+     Metadata.DisposeOf;
+     Response.DisposeOf;
+   end;
+end;
+
+end.

@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{CBF71CF8-0948-4AC7-BEE2-32D74626E44F}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\sistema-xdata-aurelius-cardapio\pServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\sitema-xdata-aurelius-cardapio-webdata\pcardapio.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="pServer">
+        <MSBuild Projects="..\sistema-xdata-aurelius-cardapio\pServer.dproj"/>
+    </Target>
+    <Target Name="pServer:Clean">
+        <MSBuild Projects="..\sistema-xdata-aurelius-cardapio\pServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pServer:Make">
+        <MSBuild Projects="..\sistema-xdata-aurelius-cardapio\pServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pcardapio">
+        <MSBuild Projects="..\sitema-xdata-aurelius-cardapio-webdata\pcardapio.dproj"/>
+    </Target>
+    <Target Name="pcardapio:Clean">
+        <MSBuild Projects="..\sitema-xdata-aurelius-cardapio-webdata\pcardapio.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pcardapio:Make">
+        <MSBuild Projects="..\sitema-xdata-aurelius-cardapio-webdata\pcardapio.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="pServer;pcardapio"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="pServer:Clean;pcardapio:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="pServer:Make;pcardapio:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

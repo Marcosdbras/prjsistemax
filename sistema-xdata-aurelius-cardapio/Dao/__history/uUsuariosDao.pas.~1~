@@ -1,0 +1,137 @@
+unit Entidades;
+
+interface
+
+uses
+  SysUtils, 
+  Generics.Collections, 
+  Aurelius.Mapping.Attributes, 
+  Aurelius.Types.Blob, 
+  Aurelius.Types.DynamicProperties, 
+  Aurelius.Types.Nullable, 
+  Aurelius.Types.Proxy, 
+  Aurelius.Criteria.Dictionary;
+
+type
+  Tusuarios = class;
+  TusuariosTableDictionary = class;
+  
+  [Entity]
+  [Table('usuarios')]
+  [Id('Fcodigo', TIdGenerator.IdentityOrSequence)]
+  Tusuarios = class
+  private
+    [Column('codigo', [TColumnProp.Required, TColumnProp.NoInsert, TColumnProp.NoUpdate])]
+    Fcodigo: Integer;
+    
+    [Column('nomeusuario', [], 40)]
+    Fnomeusuario: Nullable<string>;
+    
+    [Column('email', [], 100)]
+    Femail: Nullable<string>;
+    
+    [Column('telefone', [], 20)]
+    Ftelefone: Nullable<string>;
+    
+    [Column('tipousuario', [], 20)]
+    Ftipousuario: Nullable<string>;
+    
+    [Column('senha', [], 100)]
+    Fsenha: Nullable<string>;
+    
+    [Column('celular', [], 20)]
+    Fcelular: Nullable<string>;
+    
+    [Column('foto', [TColumnProp.Lazy])]
+    Ffoto: TBlob;
+  public
+    property codigo: Integer read Fcodigo write Fcodigo;
+    property nomeusuario: Nullable<string> read Fnomeusuario write Fnomeusuario;
+    property email: Nullable<string> read Femail write Femail;
+    property telefone: Nullable<string> read Ftelefone write Ftelefone;
+    property tipousuario: Nullable<string> read Ftipousuario write Ftipousuario;
+    property senha: Nullable<string> read Fsenha write Fsenha;
+    property celular: Nullable<string> read Fcelular write Fcelular;
+    property foto: TBlob read Ffoto write Ffoto;
+  end;
+  
+  TDicDictionary = class
+  private
+    Fusuarios: TusuariosTableDictionary;
+    function Getusuarios: TusuariosTableDictionary;
+  public
+    destructor Destroy; override;
+    property usuarios: TusuariosTableDictionary read Getusuarios;
+  end;
+  
+  TusuariosTableDictionary = class
+  private
+    Fcodigo: TDictionaryAttribute;
+    Fnomeusuario: TDictionaryAttribute;
+    Femail: TDictionaryAttribute;
+    Ftelefone: TDictionaryAttribute;
+    Ftipousuario: TDictionaryAttribute;
+    Fsenha: TDictionaryAttribute;
+    Fcelular: TDictionaryAttribute;
+    Ffoto: TDictionaryAttribute;
+  public
+    constructor Create;
+    property codigo: TDictionaryAttribute read Fcodigo;
+    property nomeusuario: TDictionaryAttribute read Fnomeusuario;
+    property email: TDictionaryAttribute read Femail;
+    property telefone: TDictionaryAttribute read Ftelefone;
+    property tipousuario: TDictionaryAttribute read Ftipousuario;
+    property senha: TDictionaryAttribute read Fsenha;
+    property celular: TDictionaryAttribute read Fcelular;
+    property foto: TDictionaryAttribute read Ffoto;
+  end;
+  
+function Dic: TDicDictionary;
+
+implementation
+
+var
+  __Dic: TDicDictionary;
+
+function Dic: TDicDictionary;
+begin
+  if __Dic = nil then __Dic := TDicDictionary.Create;
+  result := __Dic
+end;
+
+{ TDicDictionary }
+
+destructor TDicDictionary.Destroy;
+begin
+  if Fusuarios <> nil then Fusuarios.Free;
+  inherited;
+end;
+
+function TDicDictionary.Getusuarios: TusuariosTableDictionary;
+begin
+  if Fusuarios = nil then Fusuarios := TusuariosTableDictionary.Create;
+  result := Fusuarios;
+end;
+
+{ TusuariosTableDictionary }
+
+constructor TusuariosTableDictionary.Create;
+begin
+  inherited;
+  Fcodigo := TDictionaryAttribute.Create('codigo');
+  Fnomeusuario := TDictionaryAttribute.Create('nomeusuario');
+  Femail := TDictionaryAttribute.Create('email');
+  Ftelefone := TDictionaryAttribute.Create('telefone');
+  Ftipousuario := TDictionaryAttribute.Create('tipousuario');
+  Fsenha := TDictionaryAttribute.Create('senha');
+  Fcelular := TDictionaryAttribute.Create('celular');
+  Ffoto := TDictionaryAttribute.Create('foto');
+end;
+
+initialization
+  RegisterEntity(Tusuarios);
+
+finalization
+  if __Dic <> nil then __Dic.Free
+
+end.

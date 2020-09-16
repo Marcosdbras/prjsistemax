@@ -1,0 +1,16 @@
+program clientweb;
+
+uses
+  Vcl.Forms,
+  uclientweb in 'uclientweb.pas' {frmclientweb},
+  uDM in 'uDM.pas' {DataModule1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfrmclientweb, frmclientweb);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.Run;
+end.

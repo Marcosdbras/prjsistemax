@@ -1,0 +1,26 @@
+unit uDM;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, uDWAbout, uDWDataModule, uRESTDWServerContext;
+
+type
+  TDM = class(TServerMethodDataModule)
+    DWServerContext1: TDWServerContext;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

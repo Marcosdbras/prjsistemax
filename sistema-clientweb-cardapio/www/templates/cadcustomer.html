@@ -1,0 +1,95 @@
+<main role="main">		
+<div class="box-header with-border">
+<h3 class="box-title">Dados do Clientes</h3>
+</div>
+<section class="content container-fluid">
+		 <div class="row"><input type="hidden" name="operacao" class="operacao">
+			<div class="col-lg-8">
+			   <div class="form-group">
+				  <label for="CUSTOMER">Nome</label>
+				  <input type="text" class="form-control" id="CUSTOMER" name="CUSTOMER">
+			   </div>
+			</div>
+		 </div>
+		<div class="row">
+				<div class="col-lg-4">
+					<div class="form-group">
+						<label for="CONTACT_FIRST">Primeiro Nome</label>
+						<input type="text" class="form-control" id="CONTACT_FIRST" name="CONTACT_FIRST">
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="form-group">
+						<label for="CONTACT_LAST">Segundo Nome</label>
+						<input type="text" class="form-control" id="CONTACT_LAST" name="CONTACT_LAST">
+					</div>
+				</div>
+		</div>
+		 <div class="row">
+		    <div class="col-lg-4">
+				<div class="form-group">
+					<label for="PHONE_NO">Telefone/Celular</label>
+					<input type="text" class="form-control" id="PHONE_NO" name="PHONE_NO">
+				</div>	
+            </div>		 			        
+			 <script type="text/javascript">
+			  $('#PHONE_NO').mask('(999) 99999-9999');
+			 </script>
+			<div class="col-lg-4">
+			   <div class="form-group">
+				  <label for="ADDRESS_LINE1">Endereço</label>
+				  <input type="text" class="form-control" id="ADDRESS_LINE1" name="ADDRESS_LINE1">
+			   </div>
+			</div>
+		 </div>
+		 <div class="row">
+		    <div class="col-lg-4">
+			   <div class="form-group">
+				  <label for="JOB_COUNTRYCLI">País/Emprego</label>
+					<select class="form-control" id="JOB_COUNTRYCLI" name = "JOB_COUNTRYCLI">
+					 <option value="" >Selecione seu país</option>
+					</select> 
+			   </div>
+			</div>
+		 </div> 
+		 <div class="row">
+			<div class="col-lg-3">
+			   <div class="form-group">
+				  <label for="POSTAL_CODE">CEP</label>
+				  <input type="text" class="form-control" id="POSTAL_CODE" name="POSTAL_CODE">
+			   </div>
+			 <script type="text/javascript">
+			  $('#POSTAL_CODE').mask('99999-999');
+			 </script>
+			</div>
+		 </div>	 
+ 	     <div class="pull-right">
+             <button type="button" class="btn btn-danger"  id="CANCELCLI">Cancelar</button>
+             <button type="button" class="btn btn-success" id="SAVECLI">Salvar</button>
+  	     </div>
+</section>
+</main>
+
+<script type="text/javascript">
+$('.close').click(function(){
+       reloadDatatable(true);
+});
+
+$('#CANCELCLI').click(function(){
+  cancelemployee();
+});
+
+$('#cancelarCLI').click(function(){
+  canceldelete();
+   // $('#modal_apagar').modal('hide');
+});
+
+$('#okCLI').click(function(){
+ deleteemployee();
+});
+
+$('#SAVECLI').click(function(){
+ saveemployee();
+});
+
+</script>

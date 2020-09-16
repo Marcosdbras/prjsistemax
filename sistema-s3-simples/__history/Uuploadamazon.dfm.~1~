@@ -1,0 +1,37 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 427
+  ClientWidth = 751
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 32
+    Top = 48
+    Width = 31
+    Height = 13
+    Caption = 'Label1'
+  end
+  object Label2: TLabel
+    Left = 32
+    Top = 80
+    Width = 31
+    Height = 13
+    Caption = 'Label2'
+  end
+  object AmazonConnectionInfo1: TAmazonConnectionInfo
+    TableEndpoint = 'sdb.amazonaws.com'
+    QueueEndpoint = 'queue.amazonaws.com'
+    StorageEndpoint = 's3.amazonaws.com'
+    Left = 112
+    Top = 72
+  end
+end

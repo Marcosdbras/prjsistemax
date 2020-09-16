@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020/02/20 00:03:22.000.107,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/02/20 19:43:48.000.198,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/02/20 19:43:58.000.653,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2020/03/11 19:23:01.000.105,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Project1.html</Transaction>
+    <Transaction>2020/03/11 19:23:09.000.087,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/06/26 06:20:53.000.613,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/06/26 16:32:29.000.394,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Project1.html</Transaction>
+    <Transaction>2020/06/26 16:32:36.000.092,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/06/26 18:05:28.000.341,C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\WIN 8.1\Documents\sistemas\sitema-xdata-aurelius-cardapio-webdata\lista_usuarios.dfm</Transaction>
+    <Transaction>2020/06/26 18:05:28.000.341,C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.html=C:\Users\WIN 8.1\Documents\sistemas\sitema-xdata-aurelius-cardapio-webdata\lista_usuarios.html</Transaction>
+    <Transaction>2020/06/26 18:05:28.000.326,C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\WIN 8.1\Documents\sistemas\sitema-xdata-aurelius-cardapio-webdata\lista_usuarios.pas</Transaction>
+    <Transaction>2020/06/26 18:05:54.000.504,C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Project1.html=C:\Users\WIN 8.1\Documents\sistemas\sitema-xdata-aurelius-cardapio-webdata\pCardapio.html</Transaction>
+    <Transaction>2020/06/26 18:06:15.000.129,C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\WIN 8.1\Documents\sistemas\sitema-xdata-aurelius-cardapio-webdata\pcardapio.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

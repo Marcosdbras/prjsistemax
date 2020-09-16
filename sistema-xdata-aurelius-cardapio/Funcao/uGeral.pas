@@ -1,0 +1,989 @@
+unit uGeral;
+
+interface
+
+
+  uses
+    System.SysUtils, System.Classes, uDWDatamodule, uDWAbout, uRESTDWServerEvents,
+    uDWJSONObject, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error,
+    FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
+    FireDAC.Stan.Async, FireDAC.Phys, FireDAC.FMXUI.Wait, Data.DB,
+    FireDAC.Comp.Client, FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait,
+    System.JSON, System.Inifiles, FMX.Dialogs, System.UITypes, System.Variants,
+    FMX.Graphics, Soap.EncdDecd, FireDAC.Comp.Script;
+
+
+ function BitmapFromBase64(const base64: string): TBitmap;
+ function GetHashCode(Str: PChar): Integer;
+ procedure atualiza_base;
+ function DataDirectory: string;
+ function existe_tabela(nome:string):integer;
+ function existe_campo(tabela,campo:string):integer;
+ function mostrar_inf_campo(tabela,campo:string):integer;
+ function tira(pValor:string; retira:pchar):string;
+ function tirapontos(pValor:string):string;
+ function tiratracos(pValor:string):string;
+ function tirabarras(pValor:string):string;
+ function tirafimarq(pValor:string):string;
+ function Cript(senha,chave,operacao: string) : string;
+ Function Extenso(mNum:Currency):String;
+ Function MesExtenso(mDt:tDateTime):String;
+ Function DataPorExtenso(mDt:tDateTime):String;
+ Function Arred0dec(pValor:real):real;
+ Function Arre1Dec(pValor:real):real;
+ function FormataCNPJ(CNPJ: string): string;
+ function FormataCPF(CPF: string): string;
+ function RemoveAcentoTexto(aText : string) : string;
+ function RemoveAcento(const pText: string): string;
+
+
+implementation
+   uses server;
+
+procedure atualiza_base;
+var
+  f:string;
+  SQL:TFDSQLScript;
+begin
+try
+
+//-------------------INICIO TABELA GRUPOS EXISTE?
+    if existe_tabela('GRUPOS') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('CREATE TABLE GRUPOS(CODIGO INTEGER NOT NULL);');
+           SQL.SQL.Add('CREATE SEQUENCE GEN_GRUPOS_ID;');
+           SQL.SQL.Add('COMMIT;');
+           SQL.SQL.Add('');
+           SQL.SQL.Add('ALTER TABLE GRUPOS ADD CONSTRAINT PK_GRUPOS  PRIMARY KEY (CODIGO);');
+           SQL.SQL.Add('COMMIT;');
+           SQL.SQL.Add('');
+           SQL.SQL.Add('SET TERM ^');
+           SQL.SQL.Add('create trigger grupos_bi for grupos');
+           SQL.SQL.Add('active before insert position 0');
+           SQL.SQL.Add('as');
+           SQL.SQL.Add('begin');
+           SQL.SQL.Add('if (new.codigo is null) then');
+           SQL.SQL.Add('    new.codigo = gen_id(gen_grupos_id,1);');
+           SQL.SQL.Add('end^');
+           SQL.SQL.Add('COMMIT^');
+           SQL.SQL.Add('SET TERM ;');
+           SQL.SQL.Add('');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+       end;
+    //endif
+
+    //Campo DESCRICAO existe?
+    if existe_campo('GRUPOS','DESCRICAO') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE GRUPOS  ADD  DESCRICAO  VARCHAR(60); ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+    //Campo ARQUIVO FOTO existe?
+    if existe_campo('GRUPOS','ARQUIVO_FOTO') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE GRUPOS  ADD  ARQUIVO_FOTO  VARCHAR(200); ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+    //Campo CUSU existe?
+    if existe_campo('GRUPOS','CUSU') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE GRUPOS  ADD  CUSU  INTEGER; ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+
+//FIM TABELA GRUPOS ---------------------------------------------------
+
+
+
+
+//-------------------INICIO TABELA PRODUTOS EXISTE?
+    if existe_tabela('PRODUTOS') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('CREATE TABLE PRODUTOS(CODIGO INTEGER NOT NULL);');
+           SQL.SQL.Add('CREATE SEQUENCE GEN_PRODUTOS_ID;');
+           SQL.SQL.Add('COMMIT;');
+           SQL.SQL.Add('');
+           SQL.SQL.Add('ALTER TABLE PRODUTOS ADD CONSTRAINT PK_PRODUTOS  PRIMARY KEY (CODIGO);');
+           SQL.SQL.Add('COMMIT;');
+           SQL.SQL.Add('');
+           SQL.SQL.Add('SET TERM ^');
+           SQL.SQL.Add('create trigger PRODUTOS_bi for PRODUTOS');
+           SQL.SQL.Add('active before insert position 0');
+           SQL.SQL.Add('as');
+           SQL.SQL.Add('begin');
+           SQL.SQL.Add('if (new.codigo is null) then');
+           SQL.SQL.Add('    new.codigo = gen_id(gen_produtos_id,1);');
+           SQL.SQL.Add('end^');
+           SQL.SQL.Add('COMMIT^');
+           SQL.SQL.Add('SET TERM ;');
+           SQL.SQL.Add('');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+       end;
+    //endif
+
+    //Campo DESCRICAO existe?
+    if existe_campo('PRODUTOS','DESCRICAO') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE PRODUTOS  ADD  DESCRICAO  VARCHAR(150); ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+    //Campo DESCRICAOCOMPLETA existe?
+    if existe_campo('PRODUTOS','DESCRICAOCOMPLETA') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE PRODUTOS  ADD  DESCRICAOCOMPLETA  BLOB SUB_TYPE 1 SEGMENT SIZE 80; ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+
+
+
+    //Campo ARQUIVO FOTO existe?
+    if existe_campo('PRODUTOS','ARQUIVO_FOTO') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE PRODUTOS  ADD  ARQUIVO_FOTO  VARCHAR(200); ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+    //Campo CUSU existe?
+    if existe_campo('PRODUTOS','CUSU') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE PRODUTOS  ADD  CUSU  INTEGER; ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+    //Campo CGRU existe?
+    if existe_campo('PRODUTOS','CGRU') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE PRODUTOS ADD CGRU INTEGER; ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+
+    //Campo QTDE existe?
+    if existe_campo('PRODUTOS','QTDE') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE PRODUTOS ADD QTDE NUMERIC(18,3); ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+
+    //Campo PRCU existe?
+    if existe_campo('PRODUTOS','PRCU') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE PRODUTOS ADD PRCU NUMERIC(18,2); ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+    //Campo PER existe?
+    if existe_campo('PRODUTOS','PER') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE PRODUTOS ADD PER NUMERIC(6,2); ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+
+    //Campo PRVE existe?
+    if existe_campo('PRODUTOS','PRVE') = 0 then
+       begin
+
+         with frmserver do
+         begin
+           Script.ScriptOptions.FileEncoding := ecUTF8;
+           script.SQLScripts.Clear;
+           SQL := Script.SQLScripts.Add();
+           SQL.SQL.Add('ALTER TABLE PRODUTOS ADD PRVE NUMERIC(18,2); ');
+           SQL.SQL.Add('COMMIT;');
+           Script.ValidateAll;
+           Script.ExecuteAll;
+         end;
+
+       end;
+    //endi
+
+
+
+//FIM TABELA PRODUTOS ---------------------------------------------------
+
+
+
+
+
+except
+    //  ('Erro ao atualizar tabelas de dados');
+end;
+
+
+
+
+end;
+
+
+
+function GetHashCode(Str: PChar): Integer;
+var
+  Off, Len, Skip, I: Integer;
+begin
+  Result := 0;
+  Off := 1;
+  Len := StrLen(Str);
+  if Len < 16 then
+    for I := (Len - 1) downto 0 do
+    begin
+      Result := (Result * 37) + Ord(Str[Off]);
+      Inc(Off);
+    end
+  else
+  begin
+    { Only sample some characters }
+    Skip := Len div 8;
+    I := Len - 1;
+    while I >= 0 do
+    begin
+      Result := (Result * 39) + Ord(Str[Off]);
+      Dec(I, Skip);
+      Inc(Off, Skip);
+    end;
+  end;
+end;
+
+
+function BitmapFromBase64(const base64: string): TBitmap;
+var
+  Input: TStringStream;
+  Output: TBytesStream;
+begin
+  Input := TStringStream.Create(base64, TEncoding.ASCII);
+  try
+    Output := TBytesStream.Create;
+    try
+      Soap.EncdDecd.DecodeStream(Input, Output);
+      Output.Position := 0;
+      Result := TBitmap.Create;
+      try
+        Result.LoadFromStream(Output);
+      except
+        Result.Free;
+        raise;
+      end;
+    finally
+      Output.Free;
+    end;
+  finally
+    Input.Free;
+  end;
+end;
+
+function DataDirectory: string;
+      begin
+           Result := ExtractFilePath(ParamStr(0));
+           Result := ExpandFileName(Result );
+      end;
+
+
+function existe_campo(tabela,campo:string):integer;
+var Query:TFDQuery;
+begin
+
+
+try
+    try
+      Query := TFDQuery.Create(nil);
+      Query.Connection := frmserver.conn;
+
+      with Query do
+      begin
+
+        active := false;
+        sql.Clear;
+        sql.Add('SELECT'+
+                ' RDB$FIELD_NAME NOME_DO_CAMPO '+
+                'FROM '+
+                'RDB$RELATION_FIELDS '+
+                'WHERE '+
+                '(RDB$RELATION_NAME = :tabela ) and'+
+                '(RDB$FIELD_NAME = :campo)'+
+                'ORDER BY '+
+                'RDB$FIELD_POSITION');
+
+        ParamByName('campo').AsString := uppercase(campo);
+        ParamByName('tabela').AsString := uppercase(tabela);
+
+
+        active := true;
+        //ExecSql;
+        Result := recordcount;
+
+      end;
+
+    except on ex:exception do
+       begin
+         showmessage('erro ao ler campo tebela: '+ex.Message);
+         Result := 0;
+       end;
+    end;
+
+
+  finally
+      freeandnil(Query);
+  end;
+
+end;
+
+
+
+function existe_tabela(nome:string):integer;
+var Query:TFDQuery;
+begin
+
+try
+    try
+      Query := TFDQuery.Create(nil);
+      Query.Connection := frmserver.conn;
+
+      with Query do
+      begin
+
+        active := false;
+        sql.Clear;
+        sql.Add( 'SELECT'+
+                               ' RDB$RELATION_NAME NOME_DA_TABELA'+
+                            ' FROM '+
+                               'RDB$RELATIONS'+
+                            ' WHERE '+
+                                '((RDB$SYSTEM_FLAG IS NULL)OR'+
+                                ' (RDB$SYSTEM_FLAG <> 1))AND'+
+                                ' (RDB$VIEW_BLR IS NULL) AND'+
+                                ' (RDB$RELATION_NAME = :tabela)'+
+                                'ORDER BY  RDB$RELATION_NAME'   );
+
+
+        ParamByName('tabela').AsString := uppercase(nome);
+
+
+        active := true;
+        //ExecSql;
+        Result := recordcount;
+
+      end;
+
+    except on ex:exception do
+       begin
+         showmessage('erro ao ler campo tebela: '+ex.Message);
+         Result := 0;
+       end;
+    end;
+
+
+  finally
+      freeandnil(Query);
+  end;
+
+end;
+
+
+function mostrar_inf_campo(tabela,campo:string):integer;
+var Query:TFDQuery;
+begin
+
+
+try
+    try
+      Query := TFDQuery.Create(nil);
+      Query.Connection := frmserver.conn;
+
+      with Query do
+      begin
+
+        active := false;
+        sql.Clear;
+        sql.Add('SELECT '+
+                                      'A.RDB$FIELD_NAME NOME_DO_CAMPO,'+
+                                      'C.RDB$TYPE_NAME TIPO,'+
+                                      'B.RDB$FIELD_SUB_TYPE SUBTIPO,'+
+                                      'B.RDB$FIELD_LENGTH TAMANHO,'+
+                                      'B.RDB$SEGMENT_LENGTH SEGMENTO,'+
+                                      'B.RDB$FIELD_PRECISION PRECISAO,'+
+                                      'B.RDB$FIELD_SCALE CASAS_DECIMAIS,'+
+                                      'A.RDB$DEFAULT_SOURCE VALOR_PADRAO,'+
+                                      'A.RDB$NULL_FLAG OBRIGATORIO'+
+                                  ' FROM  '+
+                                      'RDB$RELATION_FIELDS A, '+
+                                      'RDB$FIELDS B, '+
+                                      'RDB$TYPES C'+
+                                   ' WHERE '+
+
+                                       '(A.RDB$FIELD_NAME = :campo) AND '+
+                                       '(A.RDB$RELATION_NAME = :tabela) AND '+
+                                       '(B.RDB$FIELD_NAME = A.RDB$FIELD_SOURCE) AND '+
+                                       '(C.RDB$TYPE = B.RDB$FIELD_TYPE) AND '+
+                                       '(C.RDB$FIELD_NAME = ''RDB$FIELD_TYPE'')');
+
+        ParamByName('campo').AsString := uppercase(campo);
+        ParamByName('tabela').AsString := uppercase(tabela);
+
+
+        active := true;
+        //ExecSql;
+        Result := recordcount;
+
+      end;
+
+    except on ex:exception do
+       begin
+         showmessage('erro ao ler campo tebela: '+ex.Message);
+         Result := 0;
+       end;
+    end;
+
+
+  finally
+      freeandnil(Query);
+  end;
+
+end;
+
+//------------------------------------------------------------------------------
+function tira(pValor:string; retira:pchar):string;
+var pPosI:integer;
+var pPosF:integer;
+var pNovoValor:string;
+begin
+   result := '';
+   pNovoValor:='';
+   pPosI:=1;
+   while true do
+     begin
+       pPosF := pos(retira,pValor);
+       if pPosF > 0 then
+          begin
+            pNovoValor:=pNovoValor+copy(pValor,pPosI,pPosF - 1);
+            pValor:=copy(pValor,pPosF+1,length(pValor));
+          end
+       else
+          begin
+            result:=pNovoValor+pValor;
+            exit;
+          end;
+     end;
+ //endw
+end;
+
+//------------------------------------------------------------------------------
+function tirapontos(pValor:string):string;
+var pPosI:integer;
+var pPosF:integer;
+var pNovoValor:string;
+begin
+   result := '';
+   pNovoValor:='';
+   pPosI:=1;
+   while true do
+     begin
+       pPosF := pos('.',pValor);
+       if pPosF > 0 then
+          begin
+            pNovoValor:=pNovoValor+copy(pValor,pPosI,pPosF - 1);
+            pValor:=copy(pValor,pPosF+1,length(pValor));
+          end
+       else
+          begin
+            result:=pNovoValor+pValor;
+            exit;
+          end;
+     end;
+ //endw
+end;
+
+//------------------------------------------------------------------------------
+function tiratracos(pValor:string):string;
+var pPosI:integer;
+var pPosF:integer;
+var pNovoValor:string;
+begin
+   result := '';
+   pNovoValor:='';
+   pPosI:=1;
+   while true do
+     begin
+       pPosF := pos('-',pValor);
+       if pPosF > 0 then
+          begin
+            pNovoValor:=pNovoValor+copy(pValor,pPosI,pPosF - 1);
+            pValor:=copy(pValor,pPosF+1,length(pValor));
+          end
+       else
+          begin
+            result:=pNovoValor+pValor;
+            exit;
+          end;
+     end;
+ //endw
+end;
+
+//------------------------------------------------------------------------------
+function tirabarras(pValor:string):string;
+var pPosI:integer;
+var pPosF:integer;
+var pNovoValor:string;
+begin
+   result := '';
+   pNovoValor:='';
+   pPosI:=1;
+   while true do
+     begin
+       pPosF := pos('/',pValor);
+       if pPosF > 0 then
+          begin
+            pNovoValor:=pNovoValor+copy(pValor,pPosI,pPosF - 1);
+            pValor:=copy(pValor,pPosF+1,length(pValor));
+          end
+       else
+          begin
+            result:=pNovoValor+pValor;
+            exit;
+          end;
+     end;
+ //endw
+end;
+
+
+//------------------------------------------------------------------------------
+function tirafimarq(pValor:string):string;
+var pPosI:integer;
+var pPosF:integer;
+var pNovoValor:string;
+begin
+   result := '';
+   pNovoValor:='';
+   pPosI:=1;
+   while true do
+     begin
+       pPosF := pos(#3,pValor);
+       if pPosF > 0 then
+          begin
+            pNovoValor:=pNovoValor+copy(pValor,pPosI,pPosF - 1);
+            pValor:=copy(pValor,pPosF+1,length(pValor));
+          end
+       else
+          begin
+            result:=pNovoValor+pValor;
+            exit;
+          end;
+     end;
+ //endw
+end;
+
+//------------------------------------------------------------------------------
+function Cript(senha,chave,operacao: string) : string;
+var
+   i, tamanhostring, pos, posletra, tamanhochave : integer;
+begin
+   result := '';
+   result := senha;
+   tamanhostring := length(senha);
+   tamanhochave  := length(chave);
+   for i := 1 to tamanhostring do
+      begin
+         pos := (i mod tamanhochave);
+         if pos = 0 then pos := tamanhochave;
+         pos := pos + 7;
+         if operacao = 'descript' then
+            begin
+               posLetra := ord(result[i]) + pos;
+            end
+         else
+            begin
+               posLetra := ord(result[i]) - pos;
+            end;
+         //endif
+         result[i] := chr(posletra);
+      end;
+   //endfor
+end;
+
+//------------------------------------------------------------------------------
+Function Extenso(mNum:Currency):String;
+
+  Function NrBaixos(mNumB:Integer):String;
+    Const mStrNumB : Array[0..18] of pChar = ('um', 'dois', 'trÍs', 'quatro', 'cinco', 'seis', 'sete',
+          'oito', 'nove', 'dez', 'onze', 'doze', 'treze', 'quatorze', 'quinze', 'dezesseis', 'dezessete', 'dezoito',
+          'dezenove');
+    begin
+      result := '';
+      result := mStrNumb[mNumb -1]+' ';
+    end;
+  //endfunction
+
+  Function NrMedios(mNumM:Integer):String;
+    Var
+      mStrNumM,
+      mStrDig : String;
+    begin
+      mStrNumM := '';
+      mStrDig := '';
+      result := '';
+
+      if mNumM < 20 then
+         Result := NrBaixos(mNumM)
+      else
+         begin
+           Result := '';
+           mStrDig := '00'+IntToStr(mNumM);
+           mStrDig := Copy (mStrDig,length(mStrDig)-1,2);
+           mStrNumM := 'vinte    trinta   quarenta '+'cinquenta sessenta setenta  '+'oitenta  noventa  ';
+           Result := TrimRight( Copy( mStrNumM,((StrToInt(mStrDig[1])-2)*9)+1,9))+' ';
+           if StrtoInt(mStrDig[2]) > 0 then
+              Result := Result + 'e '+NrBaixos(StrtoInt(mStrDig[2]));
+           //endi
+         end;
+      //endi
+    end;
+  //endfunction
+
+  Function NrAltos(mNumA:Integer):String;
+    Var
+      mStrNumA,
+      mStrDig:String;
+    begin
+
+      mStrNumA := '';
+      mStrDig := '';
+      result := '';
+
+      if mNumA = 100 then
+         Result := 'Cem '
+      else
+         begin
+           Result := '';
+           mStrDig := '00'+IntToStr(mNumA);
+           mStrDig := Copy(mStrDig,length(mStrDig)-2,3);
+           mStrNumA := 'cento        duzentos   '+'trezentos   quatrocentos '+'quinhetos  seiscentos  setecentos  '+'oitocentos  novecentos  ';
+           if StrtoInt(mStrDig[1]) > 0 then
+              Result := TrimRight(Copy(mStrNumA,((StrToInt(mStrDig[1])-1)*12)+1,12))+' ';
+           //endi
+           if StrToInt(Copy(mStrDig,2,2)) > 0 then
+              begin
+                if Length(Result) > 0 then
+                   Result := Result + 'e ';
+                //endi
+                Result := Result + NrMedios(StrToInt(Copy(mStrDig,2,2)));
+              end;
+           //endi
+         end;
+      //endi
+    end;
+  //endfunction
+
+  var
+    mStrNomes, StrPart, mNumString : String;
+    i, numpart, mPos: Integer; partDec:Real;
+  begin
+    mStrNomes := '';
+    StrPart := '';
+    mNumString := '';
+    result := '';
+    i := 0;
+    numpart := 0;
+    mPos := 0;
+    partDec := 0;
+
+    mNumString := FormatFloat('00000000000000',mNum*100);
+    mStrNomes := 'bilh„o  bilhıes milh„o  milhıes '+'mil     mil     ';
+    for i := 1 to 4 do
+       begin
+         strPart := Copy(mNumString,((i-1)*3)+1,3);
+         numPart := StrToInt(StrPart);
+         if NumPart = 1 then
+            mPos := 1
+         else
+            mPos := 8;
+         //endi
+         if NumPart > 0 then
+            begin
+              if length(Result) > 0 then
+                 Result := Result + ', ';
+              //endi
+              Result := Result + NrAltos(NumPart);
+              Result := Result + TrimRight( Copy ( mStrNomes,( (i - 1) * 16) + mPos,8) );
+              if not i = 4 then
+                 Result := Result + ' ';
+              //endi
+            end;
+         //endi
+       end;
+    //endf
+    if length(Result) > 0 then
+       begin
+         if int(mNum) = 1 then
+            Result := Result + ' real'
+         else
+            Result := Result + ' reais ';
+         //endi
+       end;
+    //endi
+    if frac(mNum) > 0 then
+      begin
+        if Length(Result) > 0 then
+           Result := Result + 'e ';
+        //endi
+        PartDec := (mNum - int(mNum))*100;
+        NumPart := trunc(PartDec);
+        if PartDec = 1 then
+           Result := Result + 'um centavo'
+        else
+           Result := Result + NrMedios(NumPart)+'centavos';
+        //endi
+      end;
+    //endi
+  end;
+
+
+
+//------------------------------------------------------------------------------
+Function MesExtenso(mDt:tDateTime):String;
+var ano, mes, dia :word;
+const meses : array [0..11] of pchar = ('Janeiro','Fevereiro','MarÁo','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro');
+begin
+  DecodeDate(mDt,ano,mes,dia);
+  result := meses[mes-1];
+end;
+
+//------------------------------------------------------------------------------
+Function DataPorExtenso(mDt:tDateTime):String;
+var ano, mes, dia :word;
+begin
+  DecodeDate(mDt,ano,mes,dia);
+  result := Inttostr(dia)+' de '+MesExtenso(mDt)+' de '+InttoStr(ano);
+end;
+
+//------------------------------------------------------------------------------
+Function Arred0dec(pValor:real):real;
+var pMult:real;
+begin
+  pMult := Round(pValor*100);
+  result := Round(pMult/100);
+end;
+
+//------------------------------------------------------------------------------
+Function Arre1Dec(pValor:real):real;
+begin
+  Result := strtofloat(formatfloat('0.0',pValor));
+end;
+
+
+
+function FormataCNPJ(CNPJ: string): string;
+ var
+   scnpj:string;
+begin
+
+  scnpj:=cnpj;
+
+  scnpj := tirapontos(Tiratracos(tirabarras(scnpj)));
+
+  //scnpj  :=  formatfloat('00000000000000',strtointdef(scnpj,0));
+
+  Result :=Copy(scnpj,1,2)+'.'+Copy(scnpj,3,3)+'.'+Copy(scnpj,6,3)+'/'+
+
+           Copy(scnpj,9,4)+'-'+Copy(scnpj,13,2);
+
+end;
+
+
+
+
+function FormataCPF(CPF: string): string;
+ var
+   sCPF:string;
+begin
+
+  sCPF:= CPF;
+
+  sCPF := tirapontos(Tiratracos(sCPF));
+
+  //sCPF  :=  formatfloat('00000000000',strtointdef(sCPF,0));
+
+  Result :=Copy(sCPF,1,3)+'.'+Copy(sCPF,4,3)+'.'+Copy(sCPF,7,3)+'-'+
+
+           Copy(sCPF,10,2);
+
+end;
+
+
+
+ function RemoveAcentoTexto(aText : string) : string;
+const
+  ComAcento = '‡‚ÍÙ˚„ı·ÈÌÛ˙Á¸Ò˝¿¬ ‘€√’¡…Õ”⁄«‹—›';
+  SemAcento = 'aaeouaoaeioucunyAAEOUAOAEIOUCUNY';
+var
+  x: Cardinal;
+begin;
+  for x := 1 to Length(aText) do
+  try
+    if (Pos(aText[x], ComAcento) <> 0) then
+      aText[x] := SemAcento[ Pos(aText[x], ComAcento) ];
+  except on E: Exception do
+    raise Exception.Create('Erro no processo.');
+  end;
+
+  Result := aText;
+end;
+
+
+
+
+
+function RemoveAcento(const pText: string): string;
+type
+  USAscii20127 = type AnsiString(20127);
+begin
+  Result := string(USAscii20127(pText));
+end;
+
+
+
+
+
+
+end.

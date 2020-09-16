@@ -1,0 +1,75 @@
+object DM: TDM
+  OldCreateOrder = False
+  OnCreate = ServerMethodDataModuleCreate
+  Encoding = esUtf8
+  Height = 235
+  Width = 337
+  object DWServerContext1: TDWServerContext
+    IgnoreInvalidParams = False
+    ContextList = <
+      item
+        DWParams = <>
+        ContentType = 'text/html'
+        ContextName = 'index'
+        Routes = [crAll]
+        ContextRules = dwcrindex
+        IgnoreBaseHeader = False
+      end>
+    BaseContext = 'www'
+    RootContext = 'index'
+    Left = 104
+    Top = 48
+  end
+  object dwcrindex: TDWContextRules
+    ContentType = 'text/html'
+    MasterHtml.Strings = (
+      '<!DOCTYPE html>'
+      '<html lang="pt-br">'
+      '<head>'
+      '    <meta charset="utf-8">'
+      
+        '       <meta name="viewport" content="width=device-width, initia' +
+        'l-scale=1">'
+      #9'   '
+      #9'   '
+      
+        #9'   <link href="https://fonts.googleapis.com/css?family=Raleway:' +
+        '300,400,500,600,700" rel="stylesheet">'
+      
+        '                  <link href="https://fonts.googleapis.com/css?f' +
+        'amily=Open+Sans:300,400,600,700" rel="stylesheet">'
+      
+        '                  <link href="https://fonts.googleapis.com/css?f' +
+        'amily=Rochester" rel="stylesheet">'#9'   '
+      #9'   '
+      
+        #9'   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com' +
+        '/bootstrap/3.3.5/css/bootstrap.min.css">'
+      
+        '                   <link rel="stylesheet" href="https://maxcdn.b' +
+        'ootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> '#9' ' +
+        '  '
+      
+        #9'   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.' +
+        '5.1/jquery.min.js"></script>'
+      '</head>'
+      '<body>'
+      '       <p>{%texto%}</p>'
+      '</body>'
+      '</html>')
+    MasterHtmlTag = '$body'
+    IncludeScriptsHtmlTag = '{%incscripts%}'
+    Items = <
+      item
+        ContextTag = '<input {%itemtag%} placeholder="dwcontextrule1">'
+        TypeItem = 'text'
+        ClassItem = 'form-control item'
+        TagID = 'texto'
+        TagReplace = '{%texto%}'
+        ObjectName = 'texto'
+      end>
+    OnBeforeRenderer = dwcrindexBeforeRenderer
+    Left = 208
+    Top = 32
+  end
+end

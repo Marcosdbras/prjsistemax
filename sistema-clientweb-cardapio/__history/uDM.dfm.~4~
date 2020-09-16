@@ -1,0 +1,30 @@
+object DM: TDM
+  OldCreateOrder = False
+  Encoding = esASCII
+  Height = 235
+  Width = 337
+  object DWServerContext1: TDWServerContext
+    IgnoreInvalidParams = False
+    ContextList = <
+      item
+        DWParams = <>
+        ContentType = 'text/html'
+        ContextName = 'index'
+        Routes = [crAll]
+        ContextRules = dwcrindex
+        IgnoreBaseHeader = False
+      end>
+    BaseContext = 'www'
+    RootContext = 'index'
+    Left = 104
+    Top = 48
+  end
+  object dwcrindex: TDWContextRules
+    ContentType = 'text/html'
+    MasterHtmlTag = '$body'
+    IncludeScriptsHtmlTag = '{%incscripts%}'
+    Items = <>
+    Left = 208
+    Top = 32
+  end
+end

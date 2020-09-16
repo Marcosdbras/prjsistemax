@@ -1,0 +1,41 @@
+unit uDM;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, uDWAbout, uDWDataModule, uRESTDWServerContext;
+
+type
+  TDM = class(TServerMethodDataModule)
+    DWServerContext1: TDWServerContext;
+    dwcrindex: TDWContextRules;
+    procedure dwcrindexBeforeRenderer(aSelf: TComponent);
+    procedure ServerMethodDataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TDM.dwcrindexBeforeRenderer(aSelf: TComponent);
+begin
+//TDWContextRules(aSelf).MasterHtml.LoadFromFile('..\..\www\templates\index.html');
+//TDWContextRules(aSelf).MasterHtml.Clear;
+//TDWContextRules(aSelf).MasterHtml.Add('');
+end;
+
+procedure TDM.ServerMethodDataModuleCreate(Sender: TObject);
+begin
+dwcrindex.Items.ContextByName['texto'].SetDisplayName('Aprentação');
+end;
+
+end.

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020/02/20 00:03:22.000.107,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/02/20 19:43:48.000.198,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/02/20 19:43:58.000.653,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2020/03/11 19:23:01.000.105,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Project1.html</Transaction>
+    <Transaction>2020/03/11 19:23:09.000.087,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/06/26 06:20:53.000.613,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/07/06 13:24:23.000.068,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/07/06 13:26:49.000.015,C:\Users\WIN 8.1\Documents\sistemas\sistema-clientweb-cardapio\uclientweb.pas=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/07/06 13:26:49.000.015,C:\Users\WIN 8.1\Documents\sistemas\sistema-clientweb-cardapio\uclientweb.dfm=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2020/07/06 13:27:14.000.301,C:\Users\WIN 8.1\Documents\sistemas\sistema-clientweb-cardapio\clientweb.dproj=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2020/07/06 13:30:09.000.156,=C:\Users\WIN 8.1\Documents\sistemas\sistema-clientweb-cardapio\Unit1.pas</Transaction>
+    <Transaction>2020/07/06 13:30:24.000.189,C:\Users\WIN 8.1\Documents\sistemas\sistema-clientweb-cardapio\uDM.dfm=C:\Users\WIN 8.1\Documents\sistemas\sistema-clientweb-cardapio\Unit1.dfm</Transaction>
+    <Transaction>2020/07/06 13:30:24.000.189,C:\Users\WIN 8.1\Documents\sistemas\sistema-clientweb-cardapio\uDM.pas=C:\Users\WIN 8.1\Documents\sistemas\sistema-clientweb-cardapio\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

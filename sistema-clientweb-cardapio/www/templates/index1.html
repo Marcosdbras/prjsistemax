@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <style type="text/css">
+   table.dataTable tbody th, table.dataTable tbody td {
+   padding: 8px 10px !important;}
+  </style>
+</head>
+ <body>
+  <div id="employeesresut" style="visibility:hidden">
+    <section class="content container-fluid">
+      <section class="content container-fluid">
+       <div class="box box-primary">
+         <section class="content container-fluid">
+          <div class="row">
+           <div class="col-lg-12">
+            <main role="main">		
+             <div class="box-header with-border">
+              <h3 class="box-title">Lista de Empregados</h3>
+             </div>
+             <section class="content container-fluid">
+              <div class="row">
+               <div class="col-lg-12">
+                <p> {%datatable%} </p>
+               </div>          
+              </div>  
+             </section>
+            </main>
+           </div>        
+          </div>  
+         </section>
+       </div>
+      </section>
+    </section>
+   </div>
+   {%deleteModal%}
+   {%dwframe%}
+ </body>
+</html>

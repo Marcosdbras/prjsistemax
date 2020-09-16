@@ -1,0 +1,245 @@
+unit uadditem;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.ListView.Types,
+  FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView,
+  FMX.TabControl, FMX.Edit, FMX.Layouts, FMX.ListBox;
+
+type
+  Tfrmadditem = class(TForm)
+    rctacesso: TRectangle;
+    lblfechar: TImage;
+    TabControl: TTabControl;
+    tabgrupo: TTabItem;
+    tabproduto: TTabItem;
+    lsvgrupo: TListView;
+    lblcabecalho: TLabel;
+    Rectangle1: TRectangle;
+    lblvoltar: TImage;
+    lbltitulo: TLabel;
+    Rectangle5: TRectangle;
+    edtpesquisarproduto: TEdit;
+    rctbuscarproduto: TRectangle;
+    Label5: TLabel;
+    Rectangle2: TRectangle;
+    lblsubtitulo1: TLabel;
+    Rectangle3: TRectangle;
+    lblsubtitulo2: TLabel;
+    Image1: TImage;
+    lsvproduto: TListView;
+    imgaddproduct: TImage;
+    layout_ConfirmaItem: TLayout;
+    Rectangle4: TRectangle;
+    Rectangle6: TRectangle;
+    Label1: TLabel;
+    rctconfirmar: TRectangle;
+    lblconfirmar: TLabel;
+    edtqtde: TEdit;
+    img_menos: TImage;
+    img_mais: TImage;
+    Rectangle7: TRectangle;
+    procedure FormCreate(Sender: TObject);
+    procedure lblfecharClick(Sender: TObject);
+    procedure lblvoltarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+
+    procedure AddGrupoListView(id:integer;descricao:string;icone:TStream);
+    procedure ListaGrupo;
+
+
+    procedure AddProdutoListView(id:integer;descricao:string;preco:double);
+    procedure ListaProduto(idgrupo:integer; busca:string);
+
+
+    procedure FormShow(Sender: TObject);
+    procedure lsvgrupoItemClick(const Sender: TObject;
+      const AItem: TListViewItem);
+    procedure lsvprodutoItemClickEx(const Sender: TObject; ItemIndex: Integer;
+      const LocalClickPos: TPointF; const ItemObject: TListItemDrawable);
+    procedure lsvprodutoItemClick(const Sender: TObject;
+      const AItem: TListViewItem);
+    procedure img_maisClick(Sender: TObject);
+
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    ncomanda:integer;
+  end;
+
+var
+  frmadditem: Tfrmadditem;
+
+implementation
+
+{$R *.fmx}
+
+procedure Tfrmadditem.ListaProduto(idgrupo:integer; busca:string);
+ var
+   x:integer;
+begin
+
+     lsvproduto.items.Clear;
+
+
+
+
+//Buscar Dados no Servidor
+for x := 1 to 10 do
+  AddProdutolistview(x,idgrupo.ToString +'Produto '+x.ToString,x);
+
+end;
+
+
+
+procedure Tfrmadditem.AddProdutoListView(id: integer; descricao: string;
+  preco: double);
+begin
+   with lsvproduto.Items.Add do
+       begin
+
+          tag := id;
+
+          TListItemText(  objects.FindDrawable('txtdescricao')).Text  := descricao;
+          TListItemText(  objects.FindDrawable('txtpreco')).Text  := formatfloat('###,##0.00',preco);
+
+          TListItemImage(  objects.FindDrawable('imgadd')).Bitmap := imgaddproduct.Bitmap;
+
+       end;
+end;
+
+
+
+
+
+procedure Tfrmadditem.AddGrupoListView(id: integer; descricao: string;
+  icone:TStream);
+  var
+    bmp: TBitMap;
+begin
+   with lsvgrupo.Items.Add do
+       begin
+
+          tag := id;
+          TListItemText(  objects.FindDrawable('txtdescricao')).Text  := descricao;
+
+          if icone <> nil then
+             begin
+                bmp := tbitmap.Create;
+                bmp.LoadFromStream(icone);
+
+                TListItemImage(  objects.FindDrawable('imgicone')).OwnsBitmap := true;
+                TListItemImage(  objects.FindDrawable('imgicone')).Bitmap  := bmp;
+
+
+             end;
+
+
+
+
+
+       end;
+end;
+
+
+procedure Tfrmadditem.ListaGrupo;
+ var
+   x:integer;
+   icone:TStream;
+begin
+
+
+lsvgrupo.Items.Clear;
+
+
+
+//Buscar Dados no Servidor
+icone := tmemorystream.Create;
+
+ image1.Bitmap.SaveToStream(icone);
+ icone.Position := 0;
+
+
+for x := 1 to 10 do
+  AddGrupolistview(x,'Grupo '+x.ToString,icone);
+
+
+icone.DisposeOf;
+end;
+
+
+
+procedure Tfrmadditem.lsvgrupoItemClick(const Sender: TObject;
+  const AItem: TListViewItem);
+begin
+  lbltitulo.Text :=  tListItemText(  AItem.Objects.FindDrawable('txtdescricao')).Text;
+  lblsubtitulo2.Text := 'Comanda / Mesa: '+ncomanda.ToString;
+
+
+  ListaProduto(AItem.Tag, '');
+
+  tabcontrol.GotoVisibleTab(1,ttabtransition.Slide);
+
+end;
+
+procedure Tfrmadditem.lsvprodutoItemClick(const Sender: TObject;
+  const AItem: TListViewItem);
+begin
+  //Exibir confirmação e quantidade
+  edtqtde.Text := '01';
+  layout_confirmaitem.Visible := true;
+end;
+
+procedure Tfrmadditem.lsvprodutoItemClickEx(const Sender: TObject;
+  ItemIndex: Integer; const LocalClickPos: TPointF;
+  const ItemObject: TListItemDrawable);
+begin
+//evento utilizado para identificar qual elemento foi clicado
+end;
+
+procedure Tfrmadditem.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+//limpa memória /  garbage
+action := tcloseaction.caFree;
+frmadditem := nil;
+end;
+
+procedure Tfrmadditem.FormCreate(Sender: TObject);
+begin
+ tabcontrol.ActiveTab := tabgrupo;
+end;
+
+procedure Tfrmadditem.FormShow(Sender: TObject);
+begin
+layout_ConfirmaItem.Visible := false;
+ListaGrupo;
+end;
+
+procedure Tfrmadditem.img_maisClick(Sender: TObject);
+begin
+   try
+     edtqtde.Text := formatfloat('00' , edtqtde.Text.ToInteger + TImage(sender).Tag);
+   except
+      edtqtde.Text := '01';
+   end;
+
+
+
+end;
+
+procedure Tfrmadditem.lblfecharClick(Sender: TObject);
+begin
+  close;
+end;
+
+procedure Tfrmadditem.lblvoltarClick(Sender: TObject);
+begin
+   tabcontrol.GotoVisibleTab(0,ttabtransition.Slide);
+end;
+
+end.

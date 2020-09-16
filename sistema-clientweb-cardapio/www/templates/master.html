@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CRUD Webpascal - Xyberpower - REST Dataware</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="./dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="./bower_components/fontawesome/css/all.css">
+  <link rel="stylesheet" href="./bower_components/sweetalert/dist/sweetalert.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="./bower_components/ionicons/css/ionicons.min.css">
+  <script src="./bower_components/sweetalert/dist/sweetalert.js"></script>
+  <script src="./templates/cademployee.js"></script>
+  <script src="./templates/cadcustomer.js"></script>
+<style type="text/css">
+   table.dataTable tbody th, table.dataTable tbody td {
+   padding: 8px 10px !important;}
+  .modal-login {		
+		color: #636363;
+		width: 350px;
+	}
+	.modal-login .modal-content {
+		padding: 20px;
+		border-radius: 5px;
+		border: none;
+	}
+	.modal-login .modal-header {
+		border-bottom: none;   
+        position: relative;
+        justify-content: center;
+	}
+	.modal-login h4 {
+		text-align: center;
+		font-size: 26px;
+		margin: 30px 0 -15px;
+	}
+	.modal-login .form-control:focus {
+		border-color: #70c5c0;
+	}
+	.modal-login .form-control, .modal-login .btn {
+		min-height: 40px;
+		border-radius: 3px; 
+	}
+	.modal-login .close {
+        position: absolute;
+		top: -5px;
+		right: -5px;
+	}	
+	.modal-login .modal-footer {
+		background: #ecf0f1;
+		border-color: #dee4e7;
+		text-align: center;
+        justify-content: center;
+		margin: 0 -20px -20px;
+		border-radius: 5px;
+		font-size: 13px;
+	}
+	.modal-login .modal-footer a {
+		color: #999;
+	}		
+	.modal-login .avatar {
+		position: absolute;
+		margin: 0 auto;
+		left: 0;
+		right: 0;
+		top: -70px;
+		width: 95px;
+		height: 95px;
+		border-radius: 50%;
+		z-index: 9;
+		background: #80aaff;
+		padding: 15px;
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+	}
+	.modal-login .avatar img {
+		width: 100%;
+	}
+	.modal-login.modal-dialog {
+		margin-top: 80px;
+	}
+    
+	.modal-login .btn:hover, .modal-login .btn:focus {
+		background: #45aba6;
+		outline: none;
+	}
+		
+	* {box-sizing:border-box}
+
+	/* Slideshow container */
+	.slideshow-container {
+	  max-width: 1000px;
+	  position: relative;
+	  margin: auto;
+	}
+
+	/* Hide the images by default */
+	.mySlides {
+	    display: none;
+	}
+
+	/* Next & previous buttons */
+	.preva, .nexta {
+	  cursor: pointer;
+	  position: absolute;
+	  top: 50%;
+	  width: auto;
+	  margin-top: -22px;
+	  padding: 16px;
+	  color: white;
+	  font-weight: bold;
+	  font-size: 18px;
+	  transition: 0.6s ease;
+	  border-radius: 0 3px 3px 0;
+	}
+
+	/* Position the "next button" to the right */
+	.nexta {
+ 	  right: 0;
+	  border-radius: 3px 0 0 3px;
+	}
+
+	/* On hover, add a black background color with a little bit see-through */
+	.preva:hover, .nexta:hover {
+	  background-color: rgba(0,0,0,0.8);
+	}
+
+	/* The dots/bullets/indicators */
+	.dot {
+	  cursor: pointer;
+	  height: 15px;
+	  width: 15px;
+	  margin: 0 2px;
+	  background-color: #bbb;
+	  border-radius: 50%;
+	  display: inline-block;
+	  transition: background-color 0.6s ease;
+	}
+
+	.active, .dot:hover {
+	  background-color: #717171;
+	}
+
+	@-webkit-keyframes fade {
+	  from {opacity: .4}
+	  to {opacity: 1}
+	}
+
+	@keyframes fade {
+	  from {opacity: .4}
+	  to {opacity: 1}
+	}
+	.landing {
+      height: 100%;
+    }
+	.custom-class{
+     padding-bottom: 30px
+    }
+ </style>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <header class="main-header">
+
+    <!-- Logo -->
+    <a href="./index" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>R</b>DW</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>REST</b> Dataware</span>
+    </a>
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- Navbar Right Menu -->
+
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="imgs/avatar.png" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          {%meuloginname%}
+          <!-- Status -->
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+       {%LabelMenu%} 
+      </ul>
+
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+   $body
+  </div>
+</div> 
+ <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+ <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+ <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+ <script src="./bower_components/sweetalert/dist/sweetalert.js"></script>
+ <script src="./dist/js/adminlte.min.js"></script>
+ <script type="text/javascript" language="javascript" src="./bower_components/datatables.net/js/jquery.datatables.min.js"></script>
+ <script type="text/javascript" language="javascript" src="./bower_components/datatables.net-bs/js/datatables.bootstrap.min.js"></script>
+ <script type="text/javascript" language="javascript" src="./bower_components/datatables.net-bs/js/datatables.responsive.min.js"></script>
+ <script type="text/javascript" language="javascript" src="./bower_components/bootstrap-datetimepicker/dist/js/bootstrap-datepicker.js"></script>
+ <script type="text/javascript" language="javascript" src="./bower_components/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="./bower_components/datatables.net-bs/css/datatables.bootstrap.css">   
+ <link rel="stylesheet" type="text/css" href="./bower_components/datatables.net-bs/css/responsive.datatables.css">
+ <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap-datetimepicker/dist/css/bootstrap-datepicker.css">
+ {%incscripts%}	 
+</body>
+</html>

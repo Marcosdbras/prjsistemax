@@ -1,0 +1,18 @@
+program pServer;
+
+uses
+  Vcl.Forms,
+  Server in 'Server.pas' {Form1},
+  MyService in 'MyService.pas',
+  uDM in 'uDM.pas' {DM: TDataModule},
+  Entidades in 'Entidades.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDM, DM);
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

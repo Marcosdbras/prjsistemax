@@ -1,0 +1,65 @@
+unit MyService;
+
+interface
+
+uses
+  XData.Server.Module,
+  XData.Service.Common,
+  uDM;
+
+type
+  [ServiceContract]
+  IMyService = interface(IInvokable)
+    ['{207FEADD-0F6F-47CB-BE55-D1031F9382FB}']
+    [HttpGet] function Sum(A, B: double): double;
+    [HttpPost] function validalogin(login, senha: string): string;
+    // By default, any service operation responds to (is invoked by) a POST request from the client.
+    function EchoString(Value: string): string;
+  end;
+
+  [ServiceImplementation]
+  TMyService = class(TInterfacedObject, IMyService)
+  private
+    function Sum(A, B: double): double;
+    function validalogin(login, senha: string): string;
+    function EchoString(Value: string): string;
+  end;
+
+implementation
+
+function TMyService.Sum(A, B: double): double;
+begin
+  Result := A + B;
+end;
+
+function TMyService.EchoString(Value: string): string;
+begin
+  Result := Value;
+end;
+
+function TMyService.validalogin(login, senha: string): string;
+begin
+  with DM do
+     begin
+        qrconsulta.Active := false;
+        qrconsulta.SQL.Clear;
+        qrconsulta.SQL.Add('select * from usuarios where (nomeusuario = :nomeusuario) and (senha = :senha)');
+        qrconsulta.ParamByName('nomeusuario').AsString  := login;
+        qrconsulta.ParamByName('senha').AsString := senha;
+        qrconsulta.Active := true;
+        if qrconsulta.RecordCount > 0 then
+           begin
+             Result := qrconsulta.FieldByName('nomeusuario').AsString;
+           end
+        else
+           begin
+               Result := '';
+           end;
+     end;
+end;
+
+initialization
+  RegisterServiceType(TypeInfo(IMyService));
+  RegisterServiceType(TMyService);
+
+end.

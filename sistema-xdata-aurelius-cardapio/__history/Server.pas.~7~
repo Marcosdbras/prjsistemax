@@ -1,0 +1,41 @@
+unit Server;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Sparkle.HttpServer.Module,
+  Sparkle.HttpServer.Context, XData.Server.Module, Sparkle.Comp.Server,
+  XData.Comp.Server, Sparkle.Comp.HttpSysDispatcher, Aurelius.Comp.Connection,
+  Sparkle.Comp.CorsMiddleware, uDM, Aurelius.Drivers.SQLite, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
+  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Aurelius.Drivers.Interfaces, XData.Comp.ConnectionPool,
+  Aurelius.Sql.Firebird, Aurelius.Schema.Firebird, Aurelius.Drivers.FireDac;
+
+type
+  TForm1 = class(TForm)
+    SparkleHttpSysDispatcher1: TSparkleHttpSysDispatcher;
+    XDataServer1: TXDataServer;
+    XDataServer1CORS: TSparkleCorsMiddleware;
+    AureliusConnection1: TAureliusConnection;
+    FDConnection1: TFDConnection;
+    FDTransaction1: TFDTransaction;
+    qrconsulta: TFDQuery;
+    XDataConnectionPool1: TXDataConnectionPool;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+end.

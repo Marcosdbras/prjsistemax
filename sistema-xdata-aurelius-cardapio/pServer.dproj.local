@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020/02/20 00:03:22.000.107,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/02/20 19:43:48.000.198,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/02/20 19:43:58.000.653,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2020/03/11 19:23:01.000.105,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Project1.html</Transaction>
+    <Transaction>2020/03/11 19:23:09.000.087,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/06/26 06:20:53.000.613,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/06/26 06:22:11.000.027,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/06/26 06:28:01.000.907,=C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\MyService.pas</Transaction>
+    <Transaction>2020/06/26 07:26:59.000.310,C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Server.pas</Transaction>
+    <Transaction>2020/06/26 07:26:59.000.310,C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Server.dfm</Transaction>
+    <Transaction>2020/06/26 07:27:11.000.740,C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\MyService.pas=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\MyService.pas</Transaction>
+    <Transaction>2020/06/26 07:27:37.000.930,C:\Users\WIN 8.1\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\pServer.dproj</Transaction>
+    <Transaction>2020/06/26 07:38:43.000.239,=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Unit1.pas</Transaction>
+    <Transaction>2020/06/26 07:49:06.000.183,C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Unit1.pas=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\uDM.pas</Transaction>
+    <Transaction>2020/06/26 07:49:06.000.183,C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Unit1.dfm=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\uDM.dfm</Transaction>
+    <Transaction>2020/06/26 12:50:45.000.608,=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Unit1.pas</Transaction>
+    <Transaction>2020/06/26 14:15:12.000.708,=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Unit1.pas</Transaction>
+    <Transaction>2020/06/26 14:25:39.000.226,C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Entidades.pas=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Unit1.pas</Transaction>
+    <Transaction>2020/06/26 14:33:42.000.970,C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Entidades.pas=</Transaction>
+    <Transaction>2020/06/26 14:34:57.000.336,=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Dao\uUsuariosDao.pas</Transaction>
+    <Transaction>2020/06/27 14:14:48.000.108,=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Funcao\uGeral.pas</Transaction>
+    <Transaction>2020/06/27 14:32:00.000.543,C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\uDM.pas=</Transaction>
+    <Transaction>2020/06/27 15:03:56.000.930,=C:\Users\WIN 8.1\Documents\sistemas\sistema-xdata-aurelius-cardapio\Funcao\uMD5.pas</Transaction>
+  </Transactions>
+</BorlandProject>
