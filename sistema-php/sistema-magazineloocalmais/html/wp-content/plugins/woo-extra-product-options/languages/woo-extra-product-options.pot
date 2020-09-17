@@ -1,0 +1,262 @@
+# Copyright (C) 2019 Extra Product Options (Product Addons) for WooCommerce
+# This file is distributed under the same license as the Extra Product Options (Product Addons) for WooCommerce package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Extra Product Options (Product Addons) for WooCommerce 2.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-extra-product-options\n"
+"POT-Creation-Date: 2019-07-12 12:38:29+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: classes/class-wepof-settings.php:93
+msgid "WooCommerce Extra Product Option"
+msgstr ""
+
+#: classes/class-wepof-settings.php:94
+msgid "Extra Product Option"
+msgstr ""
+
+#: classes/class-wepof-settings.php:106
+msgid "Premium plugin"
+msgstr ""
+
+#: classes/class-wepof-settings-page.php:31
+msgid "Manage Product Options"
+msgstr ""
+
+#: classes/class-wepof-settings.php:107
+msgid "Settings"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-frontend.php:79
+msgid "Select options"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-frontend.php:258
+msgid "Please enter a value for %s"
+msgstr ""
+
+msgid "%s is a required field."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-frontend.php:269
+msgid "%s is not a valid number."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-frontend.php:276
+msgid "%s is not a valid email address."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:207
+msgid "Edit Section"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:211
+msgid "Duplicate Section"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:218
+msgid "Delete Section"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:229
+msgid "Add new section"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:335
+#: classes/fe/class-wepof-product-options-settings.php:338
+msgid "Yes"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:343
+msgid "Edit Field"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:348
+msgid "Duplicate Field"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:355
+msgid "No custom fields found. Click on <b>Add field</b> button to create new fields."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:376
+#: classes/fe/class-wepof-product-options-settings.php:1417
+msgid "Name"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:377
+msgid "Type"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:378
+#: classes/fe/class-wepof-product-options-settings.php:1445
+msgid "Label"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:379
+#: classes/fe/class-wepof-product-options-settings.php:1493
+msgid "Placeholder"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:380
+msgid "Validation Rules"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:381
+#: classes/fe/class-wepof-product-options-settings.php:1549
+#: classes/fe/class-wepof-utils-field.php:298
+msgid "Required"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:382
+#: classes/fe/class-wepof-product-options-settings.php:1556
+msgid "Enabled"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:383
+msgid "Actions"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:390
+msgid "+ Add field"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:391
+msgid "Remove"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:392
+msgid "Enable"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:393
+msgid "Disable"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:396
+msgid "Save changes"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:397
+msgid "Reset to default options"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:408
+msgid "Product fields successfully reset"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:434
+msgid "New section added successfully."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:436
+msgid "New section not added due to an error."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:453
+msgid "Section details updated successfully."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:455
+msgid "Section details not updated due to an error."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:465
+msgid "Section removed successfully."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:467
+msgid "Section not removed due to an error."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:624
+#: classes/fe/class-wepof-product-options-settings.php:671
+msgid "Your changes were saved."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:626
+#: classes/fe/class-wepof-product-options-settings.php:673
+msgid "Your changes were not saved due to an error (or you made none!)."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:629
+#: classes/fe/class-wepof-product-options-settings.php:676
+msgid "Your changes were not saved due to an error."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:637
+msgid "Your changes were not saved due to no fields found."
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1408
+msgid "Field Type"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1432
+msgid "Position"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1452
+msgid "Label Class"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1459
+msgid "Label Position"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1500
+msgid "Options"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1507
+msgid "Validation"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1510
+msgid "Select validation"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1511
+msgid "Email"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1512
+msgid "Number"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1520
+msgid "Wrapper Class"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1527
+msgid "Cols"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1534
+msgid "Rows"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1542
+msgid "Checked by default"
+msgstr ""
+
+#: classes/fe/class-wepof-product-options-settings.php:1563
+msgid "Readonly"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Extra Product Options (Product Addons) for WooCommerce"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Add extra product options in product page."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "ThemeHigh"
+msgstr ""

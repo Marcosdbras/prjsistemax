@@ -1,0 +1,17 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+.wbm_banner_random_image ul{margin:0}
+.wbm_banner_random_image .bx-wrapper img{width:100%}
+.wbm_banner_random_image .bx-wrapper{visibility:hidden;margin:0 auto 10px}
+.wbm_banner_random_image .bx-wrapper .bx-viewport{box-shadow:none!important;border:none!important;padding:0px!important;background:none!important;left:0px!important}
+.wbm_banner_random_image li{margin-left:0}
+.wbm_banner_random_image{display:inline-block;width:100%;margin-bottom:35px;height:100%}
+.wbm_banner_image img{width:100%}
+.wbm_banner_random_image img{width:100%}
+.wbm_banner_random_image.display-top{display:none}
+.wbm_banner_image.display-top{display:none}
+.wbm_banner_random_image .thankyou-bxslider li{list-style:none}
+.woocommerce-order-received .wbm_banner_random_image{display:inline-block}

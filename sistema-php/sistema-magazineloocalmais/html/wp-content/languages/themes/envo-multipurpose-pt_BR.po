@@ -1,0 +1,991 @@
+# Translation of Themes - Envo Multipurpose in Portuguese (Brazil)
+# This file is distributed under the same license as the Themes - Envo Multipurpose package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-07-18 12:32:39+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: pt_BR\n"
+"Project-Id-Version: Themes - Envo Multipurpose\n"
+
+#. Description of the plugin/theme
+msgid "Envo Multipurpose is a fast, clean, and modern-looking responsive multipurpose theme for WordPress, with WooCommerce support. The theme is fully widgetized, so users can manage the content by using easy to use widgets. The theme works with any drag & drop page builder like Elementor, KingComposer, Beaver Builder, SiteOrigin, Divi, Brizy, Visual Composer, etc., and is compatible with all the major plugins, like WooCommerce, Yoast, Contact Form 7, etc. You can use it to build any type of websites: shop, fashion store, portfolio, business agency, corporate, education, university portal, consulting, startup, restaurant, medical, and so on. Envo Multipurpose is SEO friendly, WPML, translation, and RTL ready. Demos and demo import: https://envothemes.com/envo-multipurpose/"
+msgstr "O Envo Multipurpose é um tema multiuso rápido, limpo e moderno para o WordPress, com suporte para WooCommerce. O tema é totalmente tem widgets para que os usuários possam gerenciar o conteúdo facilment. Funciona com qualquer construtor de páginas de arrastar e soltar como Elementor, KingComposer, Beaver Builder, SiteOrigin, Divi, Brizy, Visual Composer etc e é compatível com todos os principais plugins, como WooCommerce, Yoast, Contact Form 7 etc. Você pode usá-lo para construir qualquer tipo de site: loja, loja de moda, portfólio, agência de negócios, corporativo, educação, portal universitário, consultoria, startup, restaurante, médico e assim por diante. Envo Multipurpose é SEO amigável, WPML, tradução e RTL pronto. Demonstrações e importação de demonstração: https://envothemes.com/envo-multipurpose/"
+
+#. Theme Name of the plugin/theme
+msgid "Envo Multipurpose"
+msgstr "Envo Multipurpose"
+
+#: lib/demo-import.php:27 lib/demo-import.php:54 lib/demo-import.php:63
+msgid "Before importing, install and activate this plugin: %1$s"
+msgstr "Antes de importar, instale e ative este plugin: %1$s"
+
+#: lib/demo-import.php:18 lib/demo-import.php:36 lib/demo-import.php:45
+msgid "Before importing, install and activate these plugins: %1$s, %2$s"
+msgstr "Antes de importar, instale e ative estes plugins: %1$s, %2$s"
+
+#: lib/dashboard.php:542
+msgid "Envo Multipurpose PRO"
+msgstr "Envo Multipurpose PRO"
+
+#: lib/dashboard.php:538
+msgid "And much more..."
+msgstr "E muito mais..."
+
+#: lib/dashboard.php:537
+msgid "Footer credits editor"
+msgstr "Editor de créditos de rodapé"
+
+#: lib/dashboard.php:536
+msgid "Mega Menu support"
+msgstr "Suporte Mega Menu"
+
+#: lib/dashboard.php:535
+msgid "Advertising spaces"
+msgstr "Espaços publicitários"
+
+#: lib/dashboard.php:534
+msgid "New homepage widgets"
+msgstr "Widgets da nova página inicial"
+
+#: lib/dashboard.php:533
+msgid "600+ Google fonts"
+msgstr "600+ Fontes do Google"
+
+#: lib/dashboard.php:532
+msgid "Unlimited colors"
+msgstr "Cores ilimitadas"
+
+#: lib/dashboard.php:529
+msgid "To get these awesome features, upgrade to Envo Multipurpose PRO!"
+msgstr "Para obter esses recursos impressionantes, atualize para o Envo Multipurpose PRO!"
+
+#: lib/dashboard.php:501
+msgid "Hooray! There are no required actions for you right now."
+msgstr "Legal! Não existem ações necessárias para você nesse momento."
+
+#: lib/dashboard.php:492
+msgid "Recommended plugins"
+msgstr "Plugins recomendados"
+
+#: lib/dashboard.php:474
+msgid "Are you sure you want to proceed? Imported settings will replace the ones of the current theme."
+msgstr "Tem certeza de que deseja prosseguir? As configurações importadas substituirão as do tema atual."
+
+#: lib/dashboard.php:470
+msgid "Import now"
+msgstr "Importar agora"
+
+#: lib/dashboard.php:463
+msgid "To theme"
+msgstr "Para o tema"
+
+#: lib/dashboard.php:457
+msgid "From theme"
+msgstr "Do tema"
+
+#: lib/dashboard.php:452
+msgid "Do you want to import the theme settings of the parent theme into your child theme?"
+msgstr "Deseja importar as configurações do tema do tema pai para o seu tema filho?"
+
+#. translators: %1$s theme name
+#: lib/dashboard.php:447
+msgid "You're using %1$s, a Envo Multipurpose child theme"
+msgstr "Você está usando o %1$s, um tema filho de Envo Multipurpose"
+
+#: lib/dashboard.php:424
+msgid "Contact us"
+msgstr "Contate-nos"
+
+#: lib/dashboard.php:422
+msgid "Having trouble? Need support?"
+msgstr "Problemas? Precisa de suporte?"
+
+#. translators: %s theme name
+#: lib/dashboard.php:416
+msgid "%s Documentation"
+msgstr "%s Documentação"
+
+#. translators: %s theme name
+#: lib/dashboard.php:409
+msgid "Need help in setting up and configuring %s? Please take a look at our documentation page."
+msgstr "Precisa de ajuda para instalar e configurar %s? Dê uma olhada na nossa página de documentação."
+
+#: lib/dashboard.php:405
+msgid "Theme documentation"
+msgstr "Documentação do tema"
+
+#: lib/dashboard.php:401
+msgid "Start customizing"
+msgstr "Comece a personalizar"
+
+#. translators: %s theme name
+#: lib/dashboard.php:397
+msgid "%s supports the Theme Customizer for all theme settings. Click \"Customize\" to personalize your site."
+msgstr "%s suporta o Personalizador de Tema para todas as configurações do tema. Clique em \"Personalizar\" para personalizar seu site."
+
+#: lib/dashboard.php:393
+msgid "Theme Customizer"
+msgstr "Personalizador de Tema"
+
+#: lib/dashboard.php:314
+msgid "Recommended Actions"
+msgstr "Ações recomendadas"
+
+#: lib/dashboard.php:255
+msgid "Details"
+msgstr "Detalhes"
+
+#: lib/dashboard.php:234
+msgid "Activate"
+msgstr "Ativar"
+
+#: lib/dashboard.php:215
+msgid "Install Now"
+msgstr "Instalar agora"
+
+#. translators: %s theme name
+#: lib/dashboard.php:162
+msgid "Get started with %s"
+msgstr "Comece com %s"
+
+#. translators: %1$s: theme name, %2$s link
+#: lib/dashboard.php:154
+msgid "Welcome! Thank you for choosing %1$s! To fully take advantage of the best our theme can offer please make sure you visit our <a href=\"%2$s\">Welcome page</a>"
+msgstr "Bem vind@! Obrigado por escolher %1$s! Para aproveitar ao máximo o melhor que o nosso tema pode oferecer, certifique-se de visitar nossa  <a href=\"%2$s\">página de boas-vindas</a>"
+
+#. translators: %1$s: theme name, %2$s theme version
+#. translators: %1$s theme name, %2$s theme version
+#: lib/dashboard.php:147 lib/dashboard.php:376
+msgid "Welcome to %1$s - Version %2$s"
+msgstr "Bem-vindo ao %1$s - Versão %2$s"
+
+#: lib/dashboard.php:126
+msgid "Envo Multipurpose dashboard"
+msgstr "Painel Envo Multipurpose"
+
+#: lib/dashboard.php:123
+msgid "Envo Multipurpose theme"
+msgstr "Tema Envo Multipurpose"
+
+#. translators: %s: replaced with number (counter)
+#: lib/dashboard.php:121
+msgid "Envo Multipurpose theme %s"
+msgstr "Tema Envo Multipurpose %s"
+
+#. translators: %1$s: replaced with number (counter)
+#: lib/dashboard.php:118
+msgid "%1$s action required"
+msgid_plural "%1$s actions required"
+msgstr[0] "%1$s ação necessária"
+msgstr[1] "%1$s ações necessárias"
+
+#: lib/customizer/info.php:145
+msgid "View PRO version"
+msgstr "Conheça a versão PRO"
+
+#: lib/customizer/info.php:143 lib/dashboard.php:384
+msgid "PRO version"
+msgstr "Versão PRO"
+
+#. translators: %s: "documentation" string
+#: lib/customizer/info.php:28
+msgid "For step-by-step videos and text tutorials, see %1$s"
+msgstr "Para vídeos passo a passo e tutoriais de texto, veja %1$s"
+
+#: lib/customizer/info.php:25
+msgid "demos"
+msgstr "demos"
+
+#. translators: %s: "demos here" string
+#: lib/customizer/info.php:25
+msgid "You can use this theme to create a website like these %1$s"
+msgstr "Você pode usar esse tema para criar um site como estes %1$s"
+
+#: lib/customizer/info.php:11
+msgid "Video Documentation & Demo"
+msgstr "Vídeo documentação e demo"
+
+#: lib/customizer/demo.php:42 lib/customizer/demo.php:44 lib/dashboard.php:172
+#: lib/dashboard.php:176 lib/dashboard.php:510
+msgid "Import demo data"
+msgstr "Importar conteúdo demo"
+
+#: lib/customizer/demo.php:27 lib/customizer/info.php:28 lib/dashboard.php:518
+msgid "documentation"
+msgstr "Documentação"
+
+#. translators: %s: "Click here" string
+#. translators: %1$s "documentation" string and link
+#: lib/customizer/demo.php:27 lib/dashboard.php:518
+msgid "You can import the demo content with just one click. For step-by-step video tutorial, see %1$s"
+msgstr "Você pode importar o conteúdo de demonstração com apenas um clique. Para um tutorial de vídeo passo-a-passo, veja %1$s"
+
+#: lib/customizer/demo.php:15 lib/dashboard.php:332 lib/dashboard.php:334
+msgid "One Click Demo Import"
+msgstr "Importar com um clique"
+
+#. translators: %1$s: widget name %1$s: sidebar name
+#: includes/widgets/blog-posts.php:249 includes/widgets/services.php:315
+#: includes/widgets/slider.php:274 includes/widgets/static-content.php:264
+#: includes/widgets/woocommerce-categories.php:293
+#: includes/widgets/woocommerce-products.php:311
+msgid "You can only display the %1$s widget in the %2$s sidebar."
+msgstr "Você só pode exibir o widget %1$s na barra lateral %2$s."
+
+#: includes/widgets/blog-posts.php:82 includes/widgets/services.php:176
+#: includes/widgets/slider.php:165 includes/widgets/static-content.php:89
+#: includes/widgets/woocommerce-categories.php:129
+#: includes/widgets/woocommerce-products.php:137
+msgid "Button link:"
+msgstr "Link do botão:"
+
+#: functions.php:639
+msgid "Select options"
+msgstr "Selecione as opções"
+
+#: functions.php:85 lib/dashboard.php:169
+msgid "Save time by importing our demo data: your website will be set up and ready to be customized in minutes."
+msgstr "Economize tempo importando nossos dados de demonstração: seu site será configurado e pronto para ser personalizado em minutos."
+
+#. translators: %1$s plugin name string
+#: functions.php:80
+msgid "To enable shop features, please install and activate the %s plugin."
+msgstr "Para ativar os recursos de loja, ative e instale o plugin %s."
+
+#. Template Name of the plugin/theme
+msgid "Page Builders"
+msgstr "Page Builders"
+
+#. Template Name of the plugin/theme
+msgid "Homepage"
+msgstr "Página inicial"
+
+#: template-parts/template-part-topnav.php:8
+msgid "Toggle navigation"
+msgstr "Alternar navegação"
+
+#: template-parts/template-part-topnav.php:6
+#: template-parts/template-part-topnav.php:92
+msgid "Menu"
+msgstr "Menu"
+
+#: template-parts/template-part-postauthor.php:4
+msgid "About The Author"
+msgstr "Sobre o Autor"
+
+#. translators: %s: search result string
+#: search.php:13
+msgid "Search Results for: %s"
+msgstr "Resultados da busca por: %s"
+
+#: includes/widgets/woocommerce-products.php:124
+msgid "Featured"
+msgstr "Destaques"
+
+#: includes/widgets/woocommerce-products.php:123
+msgid "On sale"
+msgstr "À venda"
+
+#: includes/widgets/woocommerce-products.php:122
+msgid "Top rated"
+msgstr "Mais votado"
+
+#: includes/widgets/woocommerce-products.php:121
+msgid "Best selling"
+msgstr "Melhor venda"
+
+#: includes/widgets/woocommerce-products.php:120
+msgid "Recent"
+msgstr "Recente"
+
+#: includes/widgets/woocommerce-products.php:118
+msgid "Product Type:"
+msgstr "Tipo de produto:"
+
+#: includes/widgets/woocommerce-products.php:102
+msgid "Comma separated list of category slugs."
+msgstr "Lista separada por vírgula de slugs de categoria."
+
+#: includes/widgets/woocommerce-products.php:95
+msgid "Product ID's:"
+msgstr "ID do produto:"
+
+#: includes/widgets/woocommerce-products.php:21
+msgid "EM: WooCommerce products"
+msgstr "EM: produtos WooCommerce"
+
+#: includes/widgets/woocommerce-products.php:20
+msgid "Displays WooCommerce products on your widgetized page."
+msgstr "Exibe produtos WooCommerce na sua página com widgets,"
+
+#: includes/widgets/woocommerce-categories.php:274
+#: includes/widgets/woocommerce-products.php:291
+msgid "Activate WooCommerce and start adding products."
+msgstr "Ative o WooCommerce e comece a adicionar produtos."
+
+#: includes/widgets/woocommerce-categories.php:117
+msgid "Display top level categories only"
+msgstr "Apresentar apenas categorias de nível superior"
+
+#: includes/widgets/woocommerce-categories.php:111
+msgid "Hide Empty"
+msgstr "Esconder itens vazios"
+
+#: includes/widgets/woocommerce-categories.php:104
+#: includes/widgets/woocommerce-products.php:111
+msgid "DESC"
+msgstr "DESC"
+
+#: includes/widgets/woocommerce-categories.php:103
+#: includes/widgets/woocommerce-products.php:110
+msgid "ASC"
+msgstr "ASC"
+
+#: includes/widgets/woocommerce-categories.php:101
+#: includes/widgets/woocommerce-products.php:108
+msgid "Order:"
+msgstr "Ordem:"
+
+#: includes/widgets/woocommerce-categories.php:95
+msgid "Comma separated list of category ID's."
+msgstr "Lista separada por vírgula de IDs de categoria."
+
+#: includes/widgets/woocommerce-categories.php:87
+#: includes/widgets/woocommerce-products.php:87
+msgid "Rating"
+msgstr "Classificação"
+
+#: includes/widgets/woocommerce-categories.php:86
+#: includes/widgets/woocommerce-products.php:86
+msgid "Random"
+msgstr "Aleatório"
+
+#: includes/widgets/woocommerce-categories.php:85
+#: includes/widgets/woocommerce-products.php:85
+msgid "Popularity"
+msgstr "Popularidade"
+
+#: includes/widgets/woocommerce-categories.php:84
+#: includes/widgets/woocommerce-products.php:84
+msgid "Menu order"
+msgstr "Ordem do menu"
+
+#: includes/widgets/woocommerce-categories.php:83
+#: includes/widgets/woocommerce-products.php:83
+msgid "ID"
+msgstr "ID"
+
+#: includes/widgets/woocommerce-categories.php:82
+#: includes/widgets/woocommerce-products.php:82
+msgid "Date"
+msgstr "Data"
+
+#: includes/widgets/woocommerce-categories.php:79
+#: includes/widgets/woocommerce-products.php:79
+msgid "Order By:"
+msgstr "Ordenar por:"
+
+#: includes/widgets/woocommerce-categories.php:72
+#: includes/widgets/woocommerce-products.php:72
+msgid "6"
+msgstr "6"
+
+#: includes/widgets/woocommerce-categories.php:71
+#: includes/widgets/woocommerce-products.php:71
+msgid "5"
+msgstr "5"
+
+#: includes/widgets/woocommerce-categories.php:70
+#: includes/widgets/woocommerce-products.php:70
+msgid "4"
+msgstr "4"
+
+#: includes/widgets/woocommerce-categories.php:69
+#: includes/widgets/woocommerce-products.php:69
+msgid "3"
+msgstr "3"
+
+#: includes/widgets/woocommerce-categories.php:68
+#: includes/widgets/woocommerce-products.php:68
+msgid "2"
+msgstr "2"
+
+#: includes/widgets/woocommerce-categories.php:66
+#: includes/widgets/woocommerce-products.php:66
+msgid "Columns:"
+msgstr "Colunas:"
+
+#: includes/widgets/woocommerce-categories.php:60
+#: includes/widgets/woocommerce-products.php:60
+msgid "The number of items to be displayed. -1 to display all."
+msgstr "O número de itens a serem exibidos. -1 para exibir todos."
+
+#: includes/widgets/woocommerce-categories.php:59
+#: includes/widgets/woocommerce-products.php:59
+msgid "Limit:"
+msgstr "Limite:"
+
+#: includes/widgets/woocommerce-categories.php:21
+msgid "EM: WooCommerce categories"
+msgstr "EM: Categorias WooCommerce"
+
+#: includes/widgets/woocommerce-categories.php:20
+msgid "Displays WooCommerce categories on your widgetized page."
+msgstr "Exibe as categorias do WooCommerce na sua página de widgets."
+
+#: includes/widgets/static-content.php:71
+msgid "YouTube video ID (eg. Fk9EBOOAYiU)"
+msgstr "ID do vídeo do YouTube (por exemplo, Fk9EBOOAYiU)"
+
+#: includes/widgets/static-content.php:20
+msgid "EM: Static content"
+msgstr "EM: conteúdo estático"
+
+#: includes/widgets/slider.php:153
+msgid "Text background color opacity:"
+msgstr "Opacidade da cor de fundo do texto:"
+
+#: includes/widgets/slider.php:143
+msgid "Text background color:"
+msgstr "Cor de fundo do texto:"
+
+#: includes/widgets/slider.php:129 includes/widgets/static-content.php:51
+msgid "Background size:"
+msgstr "Tamanho do fundo:"
+
+#: includes/widgets/slider.php:116
+msgid "Right"
+msgstr "Direita"
+
+#: includes/widgets/slider.php:115
+msgid "Center"
+msgstr "Centro"
+
+#: includes/widgets/slider.php:114
+msgid "Left"
+msgstr "Esquerda"
+
+#: includes/widgets/slider.php:112
+msgid "Content align:"
+msgstr "Alinhamento de conteúdo:"
+
+#: includes/widgets/slider.php:97 includes/widgets/static-content.php:45
+msgid "The page content and featured image will be grabbed from the selected page. If no featured image is set the section will display only the selected background color."
+msgstr "O conteúdo da página e a imagem em destaque serão retirados da página selecionada. Se nenhuma imagem em destaque estiver definida, a seção exibirá apenas a cor de fundo selecionada."
+
+#: includes/widgets/slider.php:75
+msgid "Show pagination?"
+msgstr "Mostrar paginação?"
+
+#: includes/widgets/slider.php:69
+msgid "Show arrows?"
+msgstr "Mostrar as setas?"
+
+#: includes/widgets/slider.php:63
+msgid "Pause when hovering"
+msgstr "Pausar ao passar o mouse"
+
+#: includes/widgets/slider.php:42
+msgid "Slider height"
+msgstr "Altura do Slider"
+
+#: includes/widgets/slider.php:32
+msgid "Fade"
+msgstr "Esmaecer"
+
+#: includes/widgets/slider.php:29
+msgid "Transition effect:"
+msgstr "Efeito de transição:"
+
+#: includes/widgets/slider.php:24
+msgid "Slider settings"
+msgstr "Configurações do slider"
+
+#: includes/widgets/slider.php:20
+msgid "EM: Slider"
+msgstr "EM: Slider"
+
+#: includes/widgets/slider.php:19
+msgid "Displays a slider on your widgetized page."
+msgstr "Exibe um controle deslizante na sua página com widgets."
+
+#: includes/widgets/services.php:204 includes/widgets/services.php:214
+#: includes/widgets/services.php:223 includes/widgets/services.php:232
+#: includes/widgets/slider.php:158
+msgid "Read more"
+msgstr "Leia mais"
+
+#: includes/widgets/services.php:150 includes/widgets/slider.php:106
+msgid "Content length:"
+msgstr "Comprimento do conteúdo:"
+
+#: includes/widgets/services.php:140
+msgid "Icon color:"
+msgstr "Cor do Ícone:"
+
+#: includes/widgets/services.php:133
+msgid "Icon:"
+msgstr "Ícone:"
+
+#: includes/widgets/services.php:127
+msgid "The post content will be grabbed from the selected post."
+msgstr "O conteúdo do post será retirado do post selecionado."
+
+#: includes/widgets/services.php:126 includes/widgets/slider.php:96
+#: includes/widgets/static-content.php:44
+msgid "Select page:"
+msgstr "Selecionar página:"
+
+#: includes/widgets/services.php:121 includes/widgets/slider.php:31
+#: includes/widgets/slider.php:91
+msgid "Slide"
+msgstr "Slide"
+
+#: includes/widgets/services.php:75
+msgid "Show slide pagination"
+msgstr "Mostrar paginação de slides"
+
+#: includes/widgets/services.php:69
+msgid "Show slide arrows"
+msgstr "Mostrar as setas do slide"
+
+#: includes/widgets/services.php:63
+msgid "Pause slideshow when hovering"
+msgstr "Pausar apresentação de slides ao passar o tempo"
+
+#: includes/widgets/services.php:57 includes/widgets/slider.php:57
+msgid "Auto start"
+msgstr "Início automático"
+
+#: includes/widgets/services.php:51 includes/widgets/slider.php:51
+msgid "Slideshow speed in seconds:"
+msgstr "Velocidade de apresentação de slides em segundos:"
+
+#: includes/widgets/services.php:24
+msgid "Services settings"
+msgstr "Configurações de Serviços"
+
+#: includes/widgets/services.php:20
+msgid "EM: Services"
+msgstr "EM: Serviços"
+
+#: includes/widgets/services.php:19
+msgid "Displays services on your widgetized page."
+msgstr "Exibe serviços em sua página com widgets."
+
+#: includes/widgets/recent-posts.php:96
+msgid "Recent posts"
+msgstr "Posts recentes"
+
+#: includes/widgets/recent-posts.php:21
+msgid "EM: Recent posts"
+msgstr "EM: Posts recentes"
+
+#: includes/widgets/recent-posts.php:18
+msgid "Widget to display recent posts with thumbnail and date. Recommended to be used in sidebar or footer."
+msgstr "Widget para exibir posts recentes com miniatura e data. Recomendado para ser usado na barra lateral ou no rodapé."
+
+#: includes/widgets/popular-posts.php:103 includes/widgets/recent-posts.php:101
+#: includes/widgets/woocommerce-categories.php:26
+#: includes/widgets/woocommerce-products.php:26
+msgid "Title:"
+msgstr "Título:"
+
+#: includes/widgets/popular-posts.php:98
+msgid "Popular posts"
+msgstr "Posts populares"
+
+#: includes/widgets/popular-posts.php:21
+msgid "EM: Popular posts"
+msgstr "EM: Posts populares"
+
+#: includes/widgets/popular-posts.php:18
+msgid "Widget to display popular posts with thumbnail and date. Recommended to be used in sidebar or footer."
+msgstr "Widget para exibir posts populares com miniatura e data. Recomendado para ser usado na barra lateral ou no rodapé."
+
+#: includes/widgets/blog-posts.php:126 includes/widgets/services.php:114
+#: includes/widgets/slider.php:84 includes/widgets/static-content.php:133
+#: includes/widgets/woocommerce-categories.php:173
+#: includes/widgets/woocommerce-products.php:181
+msgid "Bottom margin:"
+msgstr "Margem inferior:"
+
+#: includes/widgets/blog-posts.php:117 includes/widgets/services.php:105
+#: includes/widgets/static-content.php:124
+#: includes/widgets/woocommerce-categories.php:164
+#: includes/widgets/woocommerce-products.php:172
+msgid "Bottom padding:"
+msgstr "Preenchimento inferior:"
+
+#: includes/widgets/blog-posts.php:108 includes/widgets/services.php:96
+#: includes/widgets/static-content.php:115
+#: includes/widgets/woocommerce-categories.php:155
+#: includes/widgets/woocommerce-products.php:163
+msgid "Top padding:"
+msgstr "Preenchimento superior:"
+
+#: includes/widgets/blog-posts.php:99 includes/widgets/services.php:141
+#: includes/widgets/services.php:157 includes/widgets/services.php:164
+#: includes/widgets/services.php:193 includes/widgets/slider.php:137
+#: includes/widgets/slider.php:144 includes/widgets/slider.php:182
+#: includes/widgets/static-content.php:106
+#: includes/widgets/woocommerce-categories.php:146
+#: includes/widgets/woocommerce-products.php:154
+msgid "Leave blank to use default theme color."
+msgstr "Deixe em branco para usar a cor padrão do tema."
+
+#: includes/widgets/blog-posts.php:98 includes/widgets/services.php:192
+#: includes/widgets/slider.php:181 includes/widgets/static-content.php:105
+#: includes/widgets/woocommerce-categories.php:145
+#: includes/widgets/woocommerce-products.php:153
+msgid "Button color:"
+msgstr "Cor do botão:"
+
+#: includes/widgets/blog-posts.php:91 includes/widgets/services.php:185
+#: includes/widgets/slider.php:174 includes/widgets/static-content.php:98
+#: includes/widgets/woocommerce-categories.php:138
+#: includes/widgets/woocommerce-products.php:146
+msgid "Rounded"
+msgstr "Arredondado"
+
+#: includes/widgets/blog-posts.php:88 includes/widgets/services.php:182
+#: includes/widgets/slider.php:171 includes/widgets/static-content.php:95
+#: includes/widgets/woocommerce-categories.php:135
+#: includes/widgets/woocommerce-products.php:143
+msgid "Button style:"
+msgstr "Estilo do botão:"
+
+#: includes/widgets/blog-posts.php:76 includes/widgets/services.php:170
+#: includes/widgets/slider.php:159 includes/widgets/static-content.php:83
+#: includes/widgets/woocommerce-categories.php:123
+#: includes/widgets/woocommerce-products.php:131
+msgid "Button text:"
+msgstr "Texto do botão:"
+
+#: includes/widgets/blog-posts.php:70 includes/widgets/services.php:87
+#: includes/widgets/services.php:156 includes/widgets/slider.php:136
+#: includes/widgets/static-content.php:77
+#: includes/widgets/woocommerce-categories.php:51
+#: includes/widgets/woocommerce-products.php:51
+msgid "Text color:"
+msgstr "Cor do  texto:"
+
+#: includes/widgets/blog-posts.php:63 includes/widgets/static-content.php:64
+msgid "Background overlay:"
+msgstr "Sobreposição de fundo:"
+
+#: includes/widgets/blog-posts.php:57 includes/widgets/services.php:81
+#: includes/widgets/services.php:163 includes/widgets/slider.php:123
+#: includes/widgets/static-content.php:58
+#: includes/widgets/woocommerce-categories.php:45
+#: includes/widgets/woocommerce-products.php:45
+msgid "Background color:"
+msgstr "Cor de fundo:"
+
+#: includes/widgets/blog-posts.php:51 includes/widgets/popular-posts.php:109
+#: includes/widgets/recent-posts.php:107
+msgid "Number of posts:"
+msgstr "Número de posts:"
+
+#: includes/widgets/blog-posts.php:42
+#: includes/widgets/woocommerce-categories.php:94
+#: includes/widgets/woocommerce-products.php:101
+msgid "Category:"
+msgstr "Categoria:"
+
+#: includes/widgets/blog-posts.php:35 includes/widgets/services.php:41
+#: includes/widgets/static-content.php:37
+#: includes/widgets/woocommerce-categories.php:38
+#: includes/widgets/woocommerce-products.php:38
+msgid "Heading style:"
+msgstr "Estilo de título:"
+
+#: includes/widgets/blog-posts.php:29 includes/widgets/services.php:35
+#: includes/widgets/static-content.php:31
+#: includes/widgets/woocommerce-categories.php:32
+#: includes/widgets/woocommerce-products.php:32
+msgid "Subtitle"
+msgstr "Legenda"
+
+#: includes/widgets/blog-posts.php:23 includes/widgets/services.php:29
+#: includes/widgets/static-content.php:25
+#: includes/widgets/woocommerce-categories.php:81
+#: includes/widgets/woocommerce-products.php:81
+msgid "Title"
+msgstr "Título"
+
+#: includes/widgets/blog-posts.php:18
+msgid "EM: Blog posts"
+msgstr "EM: Posts no blog"
+
+#: includes/widgets/blog-posts.php:17 includes/widgets/static-content.php:19
+msgid "Displays content from a specified page on your widgetized page."
+msgstr "Exibe o conteúdo de uma página específica na sua página com widgets."
+
+#: includes/class-widget.php:927
+msgid "Overlay #8"
+msgstr "Sobreposição #8"
+
+#: includes/class-widget.php:926
+msgid "Overlay #7"
+msgstr "Sobreposição #7"
+
+#: includes/class-widget.php:925
+msgid "Overlay #6"
+msgstr "Sobreposição #6"
+
+#: includes/class-widget.php:924
+msgid "Overlay #5"
+msgstr "Sobreposição #5"
+
+#: includes/class-widget.php:923
+msgid "Overlay #4"
+msgstr "Sobreposição #4"
+
+#: includes/class-widget.php:922
+msgid "Overlay #3"
+msgstr "Sobreposição #3"
+
+#: includes/class-widget.php:921
+msgid "Overlay #2"
+msgstr "Sobreposição #2"
+
+#: includes/class-widget.php:920
+msgid "Overlay #1"
+msgstr "Sobreposição #1"
+
+#: includes/class-widget.php:919
+msgid "None"
+msgstr "Nenhum"
+
+#: includes/class-widget.php:910
+msgid "Style #4"
+msgstr "Estilo #4"
+
+#: includes/class-widget.php:909
+msgid "Style #3"
+msgstr "Estilo #3"
+
+#: includes/class-widget.php:908
+msgid "Style #2"
+msgstr "Estilo #2"
+
+#: includes/class-widget.php:907
+msgid "Style #1"
+msgstr "Estilo #1"
+
+#: includes/class-widget.php:906 includes/widgets/blog-posts.php:90
+#: includes/widgets/services.php:184 includes/widgets/slider.php:173
+#: includes/widgets/static-content.php:97
+#: includes/widgets/woocommerce-categories.php:137
+#: includes/widgets/woocommerce-products.php:145
+msgid "Default"
+msgstr "Padrão"
+
+#: includes/class-widget.php:897
+msgid "Auto"
+msgstr "Automático"
+
+#: includes/class-widget.php:896
+msgid "Fit Height"
+msgstr "Ajustar altura"
+
+#: includes/class-widget.php:895
+msgid "Fit Width"
+msgstr "Ajustar largura"
+
+#: includes/class-widget.php:894
+msgid "Stretch"
+msgstr "Esticar"
+
+#: includes/class-widget.php:893
+msgid "Contain"
+msgstr "Conter"
+
+#: includes/class-widget.php:892
+msgid "Cover"
+msgstr "Cobrir"
+
+#: includes/class-widget.php:738
+msgid "All Categories"
+msgstr "Todas as categorias"
+
+#: includes/class-widget.php:636
+msgid "No Page"
+msgstr "Nenhuma página"
+
+#: includes/class-widget.php:566
+msgid "Remove"
+msgstr "Remover"
+
+#: includes/class-widget.php:559
+msgid "Choose Image"
+msgstr "Escolher imagem"
+
+#: includes/class-widget.php:498
+msgid "No"
+msgstr "Não"
+
+#: includes/class-widget.php:497
+msgid "Yes"
+msgstr "Sim"
+
+#: includes/class-widget.php:496
+msgid "Delete Slide"
+msgstr "Excluir slide"
+
+#: includes/class-widget.php:468
+msgid "Add New Item"
+msgstr "Adicionar novo item"
+
+#: functions.php:605 functions.php:606
+msgid "My Account"
+msgstr "Minha Conta"
+
+#: functions.php:552
+msgid "View your shopping cart"
+msgstr "Veja o seu carrinho de compras"
+
+#: functions.php:536
+msgid "By"
+msgstr "Por"
+
+#: functions.php:521
+msgid "Next"
+msgstr "Próximo"
+
+#: functions.php:521
+msgid "Next Post"
+msgstr "Próximo post"
+
+#: functions.php:520
+msgid "Previous"
+msgstr "Anteriores"
+
+#: functions.php:520
+msgid "Previous Post"
+msgstr "Post anterior"
+
+#: functions.php:436
+msgid "Comment on "
+msgstr "Comentar"
+
+#: functions.php:433
+msgid "Off"
+msgstr "Off"
+
+#. translators: %1$s: Envo Multipurpose name with envothemes.com URL
+#: functions.php:382
+msgid "Theme: %1$s"
+msgstr "Tema: %1$s"
+
+#: functions.php:377
+msgid "https://wordpress.org/"
+msgstr "https://wordpress.org/"
+
+#. translators: %s: WordPress name with wordpress.org URL
+#: functions.php:377
+msgid "Proudly powered by %s"
+msgstr "Orgulhosamente mantido com %s"
+
+#: functions.php:353
+msgid "Tags"
+msgstr "Tags"
+
+#: functions.php:349
+msgid "Category"
+msgstr "Categoria"
+
+#: functions.php:305 includes/widgets/blog-posts.php:249
+#: includes/widgets/services.php:315 includes/widgets/slider.php:274
+#: includes/widgets/static-content.php:264
+#: includes/widgets/woocommerce-categories.php:293
+#: includes/widgets/woocommerce-products.php:311
+msgid "Homepage Widgetized Area"
+msgstr "Área da Página Inicial com widgets"
+
+#: functions.php:295
+msgid "Footer Section"
+msgstr "Seção de rodapé"
+
+#: functions.php:285
+msgid "Menu Section"
+msgstr "Seção de menu"
+
+#: functions.php:275
+msgid "Header Section"
+msgstr "Seção de cabeçalho"
+
+#: functions.php:265
+msgid "Right Sidebar"
+msgstr "Barra lateral direita"
+
+#: functions.php:183
+msgctxt "Open Sans Condensed font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:27
+msgid "Top Menu right"
+msgstr "Menu do topo à direita"
+
+#: functions.php:26
+msgid "Top Menu left"
+msgstr "Menu do topo à esquerda"
+
+#: functions.php:25
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: content-none.php:19
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Aparentemente não conseguimos encontrar o que você está procurando. Talvez uma busca ajude."
+
+#: content-none.php:14
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Nada foi encontrado com os termos da sua pesquisa. Tente novamente com algumas palavras-chaves diferentes."
+
+#. translators: %1$s: link to admin area
+#: content-none.php:8
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Pronto para publicar seu primeiro post? <a href=\"%1$s\">Comece aqui</a>."
+
+#: content-none.php:2
+msgid "Nothing Found"
+msgstr "Nada encontrado"
+
+#: comments.php:39
+msgid "Comments are closed."
+msgstr "Os comentários estão fechados."
+
+#. translators: %1$s: number of comments
+#: comments.php:16
+msgctxt "comments title"
+msgid "%1$s Comment"
+msgid_plural "%1$s Comments"
+msgstr[0] "%1$s Comentário"
+msgstr[1] "%1$s comentários"
+
+#: 404.php:12
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "Parece que nada foi encontrado neste endereço. Que tal tentar fazer uma pesquisa?"
+
+#: 404.php:10
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Ops! Essa página não pode ser encontrada."
+
+#. Author URI of the plugin/theme
+msgid "https://envothemes.com/"
+msgstr "https://envothemes.com/"
+
+#. Author of the plugin/theme
+msgid "EnvoThemes"
+msgstr "EnvoThemes"
+
+#. Theme URI of the plugin/theme
+msgid "https://envothemes.com/free-envo-multipurpose/"
+msgstr "https://envothemes.com/free-envo-multipurpose/"

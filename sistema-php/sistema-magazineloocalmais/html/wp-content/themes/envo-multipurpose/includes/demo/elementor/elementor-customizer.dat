@@ -1,0 +1,6 @@
+a:4:{s:8:"template";s:17:"envo-multipurpose";s:4:"mods";a:5:{i:0;b:0;s:18:"nav_menu_locations";a:3:{s:9:"main_menu";i:11;s:13:"top_menu_left";i:12;s:14:"top_menu_right";i:13;}s:18:"custom_css_post_id";i:260;s:16:"header_textcolor";s:5:"blank";s:11:"custom_logo";i:336;}s:7:"options";a:15:{s:30:"ctcc_styles_settings[position]";s:10:"bottom-bar";s:37:"ctcc_styles_settings[container_class]";s:0:"";s:36:"ctcc_styles_settings[enqueue_styles]";s:1:"1";s:37:"ctcc_styles_settings[rounded_corners]";s:1:"1";s:33:"ctcc_styles_settings[drop_shadow]";s:1:"1";s:46:"ctcc_styles_settings[display_accept_with_text]";s:1:"1";s:29:"ctcc_styles_settings[x_close]";s:0:"";s:32:"ctcc_styles_settings[text_color]";s:4:"#ddd";s:30:"ctcc_styles_settings[bg_color]";s:7:"#464646";s:32:"ctcc_styles_settings[link_color]";s:4:"#fff";s:34:"ctcc_styles_settings[button_color]";s:0:"";s:37:"ctcc_styles_settings[button_bg_color]";s:0:"";s:33:"ctcc_styles_settings[flat_button]";s:1:"1";s:9:"site_icon";s:1:"0";s:23:"nav_menus_created_posts";a:0:{}}s:6:"wp_css";s:86:".page-id-248 article {
+    width: 100%;
+}
+.page-id-248 #sidebar {
+    display: none;
+}";}
