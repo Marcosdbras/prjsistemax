@@ -6,12 +6,14 @@ uses
   ulogin in 'ulogin.pas' {frmlogin},
   uprincipal in 'uprincipal.pas' {frmprincipal},
   uresumo in 'uresumo.pas' {frmresumo},
-  uadditem in 'uadditem.pas' {frmadditem};
+  uadditem in 'uadditem.pas' {frmadditem},
+  uDM in 'uDM.pas' {DM: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
+  Application.CreateForm(TDM, DM);
   Application.CreateForm(Tfrmlogin, frmlogin);
   Application.Run;
 end.

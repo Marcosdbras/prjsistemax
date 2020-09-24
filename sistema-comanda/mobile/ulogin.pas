@@ -21,17 +21,21 @@ type
     tablogin: TTabItem;
     tabconfig: TTabItem;
     Layout2: TLayout;
-    Label3: TLabel;
-    Edit1: TEdit;
+    lblservidor: TLabel;
+    edtporta: TEdit;
     Rectangle2: TRectangle;
     Label4: TLabel;
     btnconfiguracoes: TLabel;
+    edtservidor: TEdit;
+    edtusuario_servidor: TEdit;
+    edtsenha_servidor: TEdit;
+    edtcusuhash: TEdit;
     procedure btnacessarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnconfiguracoesClick(Sender: TObject);
     procedure Label4Click(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure Rectangle2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
 
 
   private
@@ -47,7 +51,7 @@ implementation
 
 {$R *.fmx}
 
-uses uprincipal;
+uses uprincipal, uDM;
 
 procedure Tfrmlogin.btnacessarClick(Sender: TObject);
 begin
@@ -86,9 +90,36 @@ frmlogin := nil;
 end;
 
 
-procedure Tfrmlogin.FormCreate(Sender: TObject);
+procedure Tfrmlogin.FormShow(Sender: TObject);
 begin
-  tabcontrol.ActiveTab := tablogin;
+   with DM.query do
+      begin
+
+        active := false;
+        sql.clear;
+        sql.Add('select* from config');
+        active := true;
+
+        if fieldbyname('servidor').AsString <> '' then
+           begin
+
+             edtservidor.Text := fieldbyname('servidor').AsString;
+             edtporta.Text := fieldbyname('porta').AsString;
+             edtusuario_servidor.Text := fieldbyname('porta').AsString;
+             edtsenha_servidor.Text := fieldbyname('senha').AsString;
+             edtcusuhash.Text := fieldbyname('cusuhash').AsString;
+             tabcontrol.ActiveTab := tablogin;
+
+           end
+        else
+           begin
+
+             lbltitulo.Text := 'Configurações';
+             tabcontrol.ActiveTab := tabconfig;
+
+           end;
+
+      end;
 end;
 
 procedure Tfrmlogin.Label4Click(Sender: TObject);
@@ -99,7 +130,43 @@ end;
 
 procedure Tfrmlogin.Rectangle2Click(Sender: TObject);
 begin
-   tabcontrol.GotoVisibleTab(0, ttabtransition.Slide);
+if edtservidor.Text = '' then
+   begin
+
+     showmessage('Você deve informar o caminho do servidor!');
+     exit;
+
+   end;
+//endif
+
+with DM.Query do
+   begin
+
+      active := false;
+      sql.Clear;
+      sql.Add('delete from config');
+      execsql;
+
+
+      active  := false;
+      sql.Clear;
+      sql.Add('insert into config (servidor,cusuhash, porta, usuario, senha) values (:servidor, :cusuhash, :porta, :usuario, :senha)');
+      parambyname('servidor').AsString := edtservidor.Text;
+      parambyname('cusuhash').AsString := edtcusuhash.Text;
+      parambyname('porta').AsString := edtporta.Text;
+      parambyname('usuario').AsString := edtusuario_servidor.text;
+      parambyname('senha').AsString := edtsenha_servidor.Text;
+      execsql;
+
+
+
+
+
+   end;
+
+
+
+ tabcontrol.GotoVisibleTab(0, ttabtransition.Slide);
  lbltitulo.Text := 'Acesso';
 end;
 

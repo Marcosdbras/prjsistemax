@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8147199B-5760-4D31-AE89-325D480B27F8}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\sistema-comanda\mobile\comanda.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\sistema-cardapio-digital-server\Server.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="comanda">
+        <MSBuild Projects="..\sistema-comanda\mobile\comanda.dproj"/>
+    </Target>
+    <Target Name="comanda:Clean">
+        <MSBuild Projects="..\sistema-comanda\mobile\comanda.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="comanda:Make">
+        <MSBuild Projects="..\sistema-comanda\mobile\comanda.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Server">
+        <MSBuild Projects="..\sistema-cardapio-digital-server\Server.dproj"/>
+    </Target>
+    <Target Name="Server:Clean">
+        <MSBuild Projects="..\sistema-cardapio-digital-server\Server.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Server:Make">
+        <MSBuild Projects="..\sistema-cardapio-digital-server\Server.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="comanda;Server"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="comanda:Clean;Server:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="comanda:Make;Server:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

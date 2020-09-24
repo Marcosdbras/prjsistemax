@@ -2,15 +2,15 @@ object frmlogin: Tfrmlogin
   Left = 0
   Top = 0
   Caption = 'Login'
-  ClientHeight = 388
+  ClientHeight = 448
   ClientWidth = 323
   Fill.Color = xFFE4E2E2
   Fill.Kind = Solid
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
-  OnCreate = FormCreate
   OnClose = FormClose
+  OnShow = FormShow
   DesignerMasterStyle = 3
   object rctacesso: TRectangle
     Align = Top
@@ -34,22 +34,22 @@ object frmlogin: Tfrmlogin
   object TabControl: TTabControl
     Align = Client
     Size.Width = 323.000000000000000000
-    Size.Height = 355.000000000000000000
+    Size.Height = 415.000000000000000000
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 2
     TabPosition = None
     Sizes = (
       323s
-      355s
+      415s
       323s
-      355s)
+      415s)
     object tablogin: TTabItem
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -140,7 +140,7 @@ object frmlogin: Tfrmlogin
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -155,38 +155,28 @@ object frmlogin: Tfrmlogin
         Margins.Right = 50.000000000000000000
         Margins.Bottom = 100.000000000000000000
         Size.Width = 282.000000000000000000
-        Size.Height = 205.000000000000000000
+        Size.Height = 222.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
-        object Label3: TLabel
-          Align = Top
-          StyledSettings = [Family]
-          Size.Width = 282.000000000000000000
-          Size.Height = 17.000000000000000000
-          Size.PlatformDefault = False
-          TextSettings.Font.Size = 18.000000000000000000
-          TextSettings.Font.StyleExt = {00060000000000000004000000}
-          TextSettings.FontColor = xFFBBB6B6
-          Text = 'Servidor'
-          TabOrder = 0
-        end
-        object Edit1: TEdit
+        object edtporta: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Top
-          TabOrder = 1
+          TabOrder = 3
           TextSettings.FontColor = xFFBBB6B6
-          Position.Y = 22.000000000000000000
+          Position.Y = 64.000000000000000000
           Margins.Top = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
           Size.Width = 282.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
+          TextPrompt = 'Porta'
           StyledSettings = [Family, Size, Style]
         end
         object Rectangle2: TRectangle
           Align = Top
           Fill.Color = claBlue
           Margins.Top = 20.000000000000000000
-          Position.Y = 74.000000000000000000
+          Position.Y = 247.000000000000000000
           Size.Width = 282.000000000000000000
           Size.Height = 34.000000000000000000
           Size.PlatformDefault = False
@@ -208,6 +198,74 @@ object frmlogin: Tfrmlogin
             TabOrder = 0
             OnClick = Label4Click
           end
+        end
+        object lblservidor: TLabel
+          Align = Top
+          StyledSettings = [Family]
+          Size.Width = 282.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.Font.StyleExt = {00060000000000000004000000}
+          TextSettings.FontColor = xFFBBB6B6
+          Text = 'Configura'#231#227'o do servidor'
+          TabOrder = 4
+        end
+        object edtservidor: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 5
+          TextSettings.FontColor = xFFBBB6B6
+          Position.Y = 22.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 282.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'Servidor'
+          StyledSettings = [Family, Size, Style]
+        end
+        object edtusuario_servidor: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 2
+          TextSettings.FontColor = xFFBBB6B6
+          Position.Y = 106.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 282.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'Usu'#225'rio'
+          StyledSettings = [Family, Size, Style]
+        end
+        object edtsenha_servidor: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 1
+          TextSettings.FontColor = xFFBBB6B6
+          Position.Y = 148.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 282.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'Senha'
+          StyledSettings = [Family, Size, Style]
+        end
+        object edtcusuhash: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 0
+          TextSettings.FontColor = xFFBBB6B6
+          Position.Y = 190.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 282.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'chave'
+          StyledSettings = [Family, Size, Style]
         end
       end
     end
