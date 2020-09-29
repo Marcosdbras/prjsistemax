@@ -1,0 +1,334 @@
+unit uprincipal;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Edit, FMX.Layouts,
+  FMX.TabControl, FMX.ListView.Types, FMX.ListView.Appearances,
+  FMX.ListView.Adapters.Base, FMX.ListView, FMX.ListBox;
+
+type
+  Tfrmprincipal = class(TForm)
+    rctacesso: TRectangle;
+    lblcabecalho: TLabel;
+    TabControl: TTabControl;
+    tabcomanda: TTabItem;
+    tbmapa: TTabItem;
+    tabproduto: TTabItem;
+    rctabas: TRectangle;
+    Rectangle2: TRectangle;
+    Label1: TLabel;
+    Rectangle3: TRectangle;
+    Label2: TLabel;
+    Layout1: TLayout;
+    Label3: TLabel;
+    edtNumeroComanda: TEdit;
+    rctadditem: TRectangle;
+    lblacesso: TLabel;
+    rctdetalhe: TRectangle;
+    Label4: TLabel;
+    lstmapamesas: TListBox;
+    Rectangle5: TRectangle;
+    ListView1: TListView;
+    edtpesquisar: TEdit;
+    rctbuscar: TRectangle;
+    Label5: TLabel;
+    Image1: TImage;
+    Image2: TImage;
+    Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
+    Image6: TImage;
+    procedure Image1Click(Sender: TObject);
+    procedure mudarAba(indice:integer);
+    procedure FormCreate(Sender: TObject);
+    procedure rctadditemClick(Sender: TObject);
+    procedure AddItem(ncomanda:integer);
+    procedure ExibirDetalhe(ncomanda:integer);
+    procedure rctdetalheClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure AddMapaMesa(ncomanda:integer;
+                          status:string;
+                          valor_total:double);
+
+    procedure AddProdutoListView(id:integer;descricao:string;preco:double);
+    procedure ListaProduto(ind_clear:boolean;busca:string);
+
+
+    procedure FormShow(Sender: TObject);
+    procedure lstmapamesasItemClick(const Sender: TCustomListBox;
+      const Item: TListBoxItem);
+    procedure FormResize(Sender: TObject);
+    procedure rctbuscarClick(Sender: TObject);
+
+
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmprincipal: Tfrmprincipal;
+
+implementation
+
+{$R *.fmx}
+
+uses uadditem, uresumo;
+
+procedure Tfrmprincipal.AddItem(ncomanda:integer);
+begin
+
+  if not Assigned(frmadditem) then
+     Application.CreateForm(tfrmadditem,frmadditem);
+
+     frmadditem.ncomanda := ncomanda;
+     frmadditem.lblsubtitulo1.Text := 'Comanda / Mesa : '+ncomanda.ToString;
+
+  frmAddItem.Show;
+
+
+end;
+
+procedure Tfrmprincipal.AddMapaMesa(ncomanda: integer;
+                                    status: string;
+                                    valor_total:double);
+var
+   item:tlistboxitem;
+   rect:trectangle;
+   lbl:tlabel;
+begin
+   //criação do item da lista  dentro da listbox
+   item := tlistboxitem.create(lstmapamesas);
+   item.Text := '';
+
+   //largura dos itens
+   item.Height := 110;
+   item.Tag := ncomanda;
+   item.Selectable := false;
+
+   //Retangulo de fundo dentro do item da listbox
+   rect := TRectangle.Create(item);
+   rect.Parent := item;
+   rect.Align := TAlignLayout.Client;
+   rect.Margins.Top := 10;
+   rect.Margins.Bottom := 10;
+   rect.Margins.Left := 10;
+   rect.Margins.Right := 10;
+   rect.Fill.Kind := tbrushkind.Solid;
+   //Para deixar o item a list box capturar o click e não o retangulo
+   rect.HitTest := false;
+
+   if status = 'Ocupada' then
+      rect.Fill.Color :=  $FFEF0A0A
+   else
+      rect.Fill.Color := $FF0D76F8;
+
+   rect.XRadius := 10;
+   rect.YRadius := 10;
+   rect.Stroke.Kind := tbrushkind.none;
+
+   //criação das label  dentro dos retangulos - label status
+   lbl := tlabel.Create(rect);
+   lbl.Parent := rect;
+   lbl.Align := talignlayout.Top;
+   lbl.Text := status;
+   lbl.Margins.Top := 5;
+   lbl.Margins.Left := 5;
+   lbl.Margins.Bottom := 0;
+   lbl.Margins.Right := 0;
+   lbl.Height := 15;
+   lbl.StyledSettings := lbl.StyledSettings - [TStyledSetting.FontColor];
+   lbl.FontColor := $FFFCF9F9;
+
+
+   //criação das label  dentro dos retangulos - label valor total
+   lbl := tlabel.Create(rect);
+   lbl.Parent := rect;
+   lbl.Align := talignlayout.Bottom;
+
+   if status = 'Ocupada' then
+      lbl.Text := formatfloat('###,###,##0.00',valor_total)
+   else
+      lbl.Text := '';
+
+   lbl.Margins.Top := 0;
+   lbl.Margins.Left := 0;
+   lbl.Margins.Bottom := 5;
+   lbl.Margins.Right := 5;
+   lbl.Height := 15;
+   lbl.StyledSettings := lbl.StyledSettings - [TStyledSetting.FontColor];
+   lbl.FontColor := $FFFCF9F9;
+   lbl.TextAlign := ttextalign.Trailing;
+
+
+ //criação das label  dentro dos retangulos - label comanda
+   lbl := tlabel.Create(rect);
+   lbl.Parent := rect;
+   lbl.Align := talignlayout.Client;
+   lbl.Text := ncomanda.ToString;
+
+   //Retirando da formatação padrão para que a formatação manual funcione
+   lbl.StyledSettings := lbl.StyledSettings - [TStyledSetting.FontColor, TStyledSetting.Size];
+   lbl.Font.Size := 30;
+   lbl.FontColor := $FFFCF9F9;
+   lbl.TextAlign := ttextalign.Center;
+   lbl.VertTextAlign := ttextalign.Center;
+
+
+
+   //adiciona item
+   lstmapamesas.AddObject(item);
+end;
+
+procedure Tfrmprincipal.AddProdutoListView(id: integer; descricao: string;
+  preco: double);
+begin
+   with ListView1.Items.Add do
+       begin
+
+          tag := id;
+
+          TListItemText(  objects.FindDrawable('txtdescricao')).Text  := descricao;
+          TListItemText(  objects.FindDrawable('txtpreco')).Text  := formatfloat('###,##0.00',preco);
+
+
+
+       end;
+end;
+
+procedure Tfrmprincipal.ExibirDetalhe(ncomanda:integer);
+begin
+
+   if not Assigned(frmresumo) then
+      Application.CreateForm(tfrmresumo,frmresumo);
+
+   frmresumo.ncomanda         := ncomanda;
+   frmresumo.lblncomanda.Text := ncomanda.ToString;
+
+   frmresumo.Show;
+
+
+end;
+
+procedure Tfrmprincipal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+//limpa memória /  garbage
+action := tcloseaction.caFree;
+frmprincipal := nil;
+end;
+
+procedure Tfrmprincipal.FormCreate(Sender: TObject);
+begin
+tabcontrol.ActiveTab := tabcomanda;
+
+
+
+
+
+end;
+
+procedure Tfrmprincipal.FormResize(Sender: TObject);
+begin
+  //largura total da lista /  largura dos itens
+  lstmapamesas.Columns := trunc(lstmapamesas.Width/110)
+end;
+
+procedure Tfrmprincipal.FormShow(Sender: TObject);
+begin
+
+
+addmapamesa(1,'Livre',0);
+addmapamesa(2,'Ocupada',50);
+addmapamesa(3,'Ocupada',70);
+addmapamesa(4,'Livre',0);
+addmapamesa(5,'Livre',0);
+addmapamesa(6,'Ocupada',120);
+addmapamesa(7,'Ocupada',450);
+end;
+
+procedure Tfrmprincipal.Image1Click(Sender: TObject);
+begin
+
+   mudarAba(timage(sender).Tag);
+end;
+
+procedure Tfrmprincipal.ListaProduto(ind_clear: boolean; busca: string);
+ var
+   x:integer;
+begin
+//Só vai limpar lista de estourar quantidade maxima de produtos na listview para não sobrecarregar a transferencia de dados pela rede
+if ind_clear then
+   begin
+     ListView1.items.Clear;
+   end;
+
+
+
+//Buscar Dados no Servidor
+for x := 1 to 10 do
+  AddProdutolistview(x,'Produto '+x.ToString,x);
+
+end;
+
+procedure Tfrmprincipal.lstmapamesasItemClick(const Sender: TCustomListBox;
+  const Item: TListBoxItem);
+begin
+ExibirDetalhe(item.Tag);
+end;
+
+procedure Tfrmprincipal.mudarAba(indice:integer);
+begin
+   tabcontrol.GotoVisibleTab(indice,ttabtransition.Slide);
+end;
+
+procedure Tfrmprincipal.rctadditemClick(Sender: TObject);
+begin
+
+
+ try
+     edtnumerocomanda.Text.ToInteger;
+   except
+     showmessage('Valor inserido não é válido!');
+     exit;
+   end;
+
+
+
+   if edtnumerocomanda.Text <> '' then
+      begin
+         AddItem(edtnumerocomanda.Text.ToInteger());
+      end;
+
+end;
+
+procedure Tfrmprincipal.rctbuscarClick(Sender: TObject);
+begin
+  ListaProduto(true, edtpesquisar.Text);
+end;
+
+procedure Tfrmprincipal.rctdetalheClick(Sender: TObject);
+begin
+
+   try
+     edtnumerocomanda.Text.ToInteger;
+   except
+     showmessage('Valor inserido não é válido!');
+     exit;
+   end;
+
+
+   if edtnumerocomanda.Text <> '' then
+      begin
+        ExibirDetalhe( edtnumerocomanda.Text.ToInteger );
+      end;
+
+
+
+end;
+
+end.

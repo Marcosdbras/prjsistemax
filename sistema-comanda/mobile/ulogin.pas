@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Edit,
   FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects,
-  FMX.TabControl;
+  FMX.TabControl, Rest.Types;
 
 type
   Tfrmlogin = class(TForm)
@@ -30,12 +30,32 @@ type
     edtusuario_servidor: TEdit;
     edtsenha_servidor: TEdit;
     edtcusuhash: TEdit;
+    Label2: TLabel;
+    Rectangle1: TRectangle;
+    Rectangle3: TRectangle;
+    Rectangle4: TRectangle;
+    Rectangle5: TRectangle;
+    Rectangle6: TRectangle;
+    Label3: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    tabobterchave: TTabItem;
+    Label8: TLabel;
+    edtusuarioserial: TEdit;
+    edtsenhaserial: TEdit;
+    Rectangle7: TRectangle;
+    Label9: TLabel;
+    Image1: TImage;
+    edtsenha: TEdit;
     procedure btnacessarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnconfiguracoesClick(Sender: TObject);
     procedure Label4Click(Sender: TObject);
     procedure Rectangle2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Rectangle7Click(Sender: TObject);
+    procedure Label6Click(Sender: TObject);
 
 
   private
@@ -51,10 +71,26 @@ implementation
 
 {$R *.fmx}
 
-uses uprincipal, uDM;
+uses uprincipal, uDM, uMD5;
 
 procedure Tfrmlogin.btnacessarClick(Sender: TObject);
+var
+   erro:string;
 begin
+
+
+  if not DM.login(erro,edtlogin.Text,md5(edtsenha.Text)) then
+     begin
+
+       showmessage(erro);
+       exit;
+
+     end;
+
+
+
+
+
 
   //verifica se form existe
   if not assigned(frmprincipal) then
@@ -100,7 +136,7 @@ begin
         sql.Add('select* from config');
         active := true;
 
-        if fieldbyname('servidor').AsString <> '' then
+        if fieldbyname('cusuhash').AsString <> '' then
            begin
 
              edtservidor.Text := fieldbyname('servidor').AsString;
@@ -126,6 +162,17 @@ procedure Tfrmlogin.Label4Click(Sender: TObject);
 begin
  tabcontrol.GotoVisibleTab(0, ttabtransition.Slide);
  lbltitulo.Text := 'Acesso';
+end;
+
+procedure Tfrmlogin.Label6Click(Sender: TObject);
+begin
+   tabcontrol.GotoVisibleTab(2, ttabtransition.Slide);
+   lbltitulo.Text := 'Administrador da Conta';
+
+   edtusuarioserial.Text := '';
+   edtsenhaserial.Text := '';
+
+
 end;
 
 procedure Tfrmlogin.Rectangle2Click(Sender: TObject);
@@ -168,6 +215,31 @@ with DM.Query do
 
  tabcontrol.GotoVisibleTab(0, ttabtransition.Slide);
  lbltitulo.Text := 'Acesso';
+end;
+
+procedure Tfrmlogin.Rectangle7Click(Sender: TObject);
+var
+  erro:string;
+
+begin
+  if not DM.login(erro,edtusuarioserial.Text,md5(edtsenhaserial.Text)) then
+     begin
+
+       showmessage(erro);
+       exit;
+
+     end;
+
+  edtcusuhash.Text := dm.hash;
+
+
+  tabcontrol.GotoVisibleTab(1, ttabtransition.Slide);
+   lbltitulo.Text := 'Configurações';
+
+
+
+
+
 end;
 
 End.

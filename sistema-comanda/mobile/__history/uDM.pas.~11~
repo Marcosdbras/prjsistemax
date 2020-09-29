@@ -1,0 +1,141 @@
+unit uDM;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.FMXUI.Wait,
+  Data.DB, FireDAC.Comp.Client, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef,
+  FireDAC.Stan.ExprFuncs, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
+  FireDAC.DApt, FireDAC.Comp.DataSet, REST.Types, REST.Client,
+  REST.Authenticator.Basic, Data.Bind.Components, Data.Bind.ObjectScope,
+  System.json, System.netEncoding;
+
+type
+  TDM = class(TDataModule)
+    Conn: TFDConnection;
+    Query: TFDQuery;
+    RESTClient: TRESTClient;
+    RequestLogin: TRESTRequest;
+    ResponseLogin: TRESTResponse;
+    HTTPBasicAuth: THTTPBasicAuthenticator;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+     hash:string;
+
+    function login(out erro:string;login,senha:string):boolean;
+    { Public declarations }
+  end;
+
+var
+  DM: TDM;
+
+implementation
+
+{%CLASSGROUP 'FMX.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TDM.DataModuleCreate(Sender: TObject);
+begin
+
+
+with Conn do
+   begin
+
+     Params.Values['DriverID'] := 'SQLite';
+
+     {$IFDEF IOS}
+         Params.Values['Database'] := TPath.Combine(TPath.GetDocumentsPath,'comanda_eletronica.db');
+     {$ENDIF}
+
+
+     {$IFDEF ANDROID}
+         Params.Values['Database'] := TPath.Combine(TPath.GetDocumentsPath,'comanda_eletronica.db');
+     {$ENDIF}
+
+
+     {$IFDEF MSWINDOWS}
+
+         if fileexists(System.SysUtils.GetCurrentDir +  '\DB\comanda_eletronica.db') then
+
+             Params.Values['Database'] := System.SysUtils.GetCurrentDir +  '\DB\comanda_eletronica.db'
+
+         else
+
+            Params.Values['Database'] := System.SysUtils.GetCurrentDir +  '\..\..\DB\comanda_eletronica.db';
+
+
+     {$ENDIF}
+
+
+     try
+        Connected := true;
+
+     except  on e:exception do
+         raise Exception.Create('Erro ao conectar o banco de dados'+e.Message);
+
+
+     end;
+
+
+   end;
+
+
+
+end;
+
+function TDM.login(out erro: string; login, senha: string): boolean;
+var
+   json:string;
+   jsonObj:tjsonobject;
+begin
+   erro := '';
+
+
+   with RequestLogin do
+      begin
+
+        params.Clear;
+        AddParameter('login',login,trestrequestparameterkind.pkGETorPOST);
+        AddParameter('senha',senha,trestrequestparameterkind.pkGETorPOST);
+        Execute;
+
+
+        if response.StatusCode <> 200 then
+           begin
+
+             erro := 'Erro ao validar login: '+response.StatusCode.ToString;
+             result := false;
+
+           end
+        else
+           begin
+
+             json := response.JSONValue.ToString;
+             jsonobj := tjsonobject.ParseJSONValue(tencoding.utf8.GetBytes(json),0) as tjsonobject;
+
+             if jsonobj.GetValue('Status').Value =  'Sucesso' then
+                begin
+                   hash := jsonobj.GetValue('hash').Value;
+                   result := true;
+                end
+             else
+                begin
+                   erro := jsonobj.GetValue('erro').Value;
+                   result := false;
+                end;
+
+
+
+           end;
+
+
+      end;
+
+end;
+
+end.

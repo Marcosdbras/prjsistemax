@@ -8,16 +8,30 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.FMXUI.Wait,
   Data.DB, FireDAC.Comp.Client, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef,
   FireDAC.Stan.ExprFuncs, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
-  FireDAC.DApt, FireDAC.Comp.DataSet;
+  FireDAC.DApt, FireDAC.Comp.DataSet, REST.Types, REST.Client,
+  REST.Authenticator.Basic, Data.Bind.Components, Data.Bind.ObjectScope,
+  System.json, System.netEncoding;
 
 type
   TDM = class(TDataModule)
     Conn: TFDConnection;
     Query: TFDQuery;
+    RESTClient: TRESTClient;
+    RequestLogin: TRESTRequest;
+    HTTPBasicAuth: THTTPBasicAuthenticator;
+    RequestListarComandas: TRESTRequest;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
+     hash:string;
+
+    function login(out erro:string;login,senha:string):boolean;
+
+    function listarComandas(out jsonarray:tjsonarray;
+                            out erro:string):boolean;
+
+
     { Public declarations }
   end;
 
@@ -76,6 +90,97 @@ with Conn do
    end;
 
 
+
+end;
+
+function TDM.listarComandas(out jsonarray: tjsonarray;
+                            out erro:string): boolean;
+var
+   json:string;
+
+begin
+   erro := '';
+
+
+   with RequestListarComandas do
+      begin
+
+        params.Clear;
+        AddParameter('cusuhash',hash,trestrequestparameterkind.pkGETorPOST);
+        Execute;
+
+        if response.StatusCode <> 200 then
+           begin
+
+             erro := 'Erro ao listar comandas: '+response.StatusCode.ToString;
+             result := false;
+
+
+           end
+        else
+           begin
+
+             json := response.JSONValue.ToString;
+             jsonArray := tjsonobject.ParseJSONValue(tencoding.utf8.GetBytes(json),0) as tjsonarray;
+
+             result := true;
+
+
+
+           end;
+
+
+      end;
+
+end;
+
+function TDM.login(out erro: string; login, senha: string): boolean;
+var
+   json:string;
+   jsonObj:tjsonobject;
+begin
+   erro := '';
+
+
+   with RequestLogin do
+      begin
+
+        params.Clear;
+        AddParameter('login',login,trestrequestparameterkind.pkGETorPOST);
+        AddParameter('senha',senha,trestrequestparameterkind.pkGETorPOST);
+        Execute;
+
+
+        if response.StatusCode <> 200 then
+           begin
+
+             erro := 'Erro ao validar login: '+response.StatusCode.ToString;
+             result := false;
+
+           end
+        else
+           begin
+
+             json := response.JSONValue.ToString;
+             jsonobj := tjsonobject.ParseJSONValue(tencoding.utf8.GetBytes(json),0) as tjsonobject;
+
+             if jsonobj.GetValue('Status').Value =  'Sucesso' then
+                begin
+                   hash := jsonobj.GetValue('hash').Value;
+                   result := true;
+                end
+             else
+                begin
+                   erro := jsonobj.GetValue('erro').Value;
+                   result := false;
+                end;
+
+
+
+           end;
+
+
+      end;
 
 end;
 

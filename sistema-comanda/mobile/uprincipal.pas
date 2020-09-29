@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Edit, FMX.Layouts,
   FMX.TabControl, FMX.ListView.Types, FMX.ListView.Appearances,
-  FMX.ListView.Adapters.Base, FMX.ListView, FMX.ListBox;
+  FMX.ListView.Adapters.Base, FMX.ListView, FMX.ListBox, System.json;
 
 type
   Tfrmprincipal = class(TForm)
@@ -38,6 +38,9 @@ type
     Image1: TImage;
     Image2: TImage;
     Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
+    Image6: TImage;
     procedure Image1Click(Sender: TObject);
     procedure mudarAba(indice:integer);
     procedure FormCreate(Sender: TObject);
@@ -49,6 +52,8 @@ type
     procedure AddMapaMesa(ncomanda:integer;
                           status:string;
                           valor_total:double);
+
+    procedure carregarComandas;
 
     procedure AddProdutoListView(id:integer;descricao:string;preco:double);
     procedure ListaProduto(ind_clear:boolean;busca:string);
@@ -75,7 +80,7 @@ implementation
 
 {$R *.fmx}
 
-uses uadditem, uresumo;
+uses uadditem, uresumo, uDM;
 
 procedure Tfrmprincipal.AddItem(ncomanda:integer);
 begin
@@ -120,7 +125,11 @@ begin
    //Para deixar o item a list box capturar o click e não o retangulo
    rect.HitTest := false;
 
-   if status = 'Ocupada' then
+   //A=Ocupada
+   //F=Livre
+
+
+   if status = 'A' then
       rect.Fill.Color :=  $FFEF0A0A
    else
       rect.Fill.Color := $FF0D76F8;
@@ -133,7 +142,16 @@ begin
    lbl := tlabel.Create(rect);
    lbl.Parent := rect;
    lbl.Align := talignlayout.Top;
-   lbl.Text := status;
+
+   //A=Ocupada
+   //F=Livre
+
+   if status = 'A' then
+      lbl.Text := 'Ocupada'
+   else
+      lbl.Text := 'Livre';
+
+
    lbl.Margins.Top := 5;
    lbl.Margins.Left := 5;
    lbl.Margins.Bottom := 0;
@@ -148,7 +166,7 @@ begin
    lbl.Parent := rect;
    lbl.Align := talignlayout.Bottom;
 
-   if status = 'Ocupada' then
+   if status = 'A' then
       lbl.Text := formatfloat('###,###,##0.00',valor_total)
    else
       lbl.Text := '';
@@ -167,7 +185,7 @@ begin
    lbl := tlabel.Create(rect);
    lbl.Parent := rect;
    lbl.Align := talignlayout.Client;
-   lbl.Text := ncomanda.ToString;
+   lbl.Text := formatfloat('000', ncomanda);
 
    //Retirando da formatação padrão para que a formatação manual funcione
    lbl.StyledSettings := lbl.StyledSettings - [TStyledSetting.FontColor, TStyledSetting.Size];
@@ -198,6 +216,32 @@ begin
        end;
 end;
 
+procedure Tfrmprincipal.carregarComandas;
+var jsonarray:tjsonarray;
+    erro:string;
+    x:integer;
+begin
+  lstmapamesas.Items.Clear;
+
+  if not dm.listarComandas(jsonarray,erro) then
+    begin
+
+      showmessage(erro);
+      exit;
+
+    end;
+
+  for x := 0 to jsonarray.Size - 1 do
+      begin
+         AddMapaMesa( jsonarray.Get(x).GetValue<integer>('IDCOMANDA'),
+                      jsonarray.Get(x).GetValue<String>('STATUS'),
+                      jsonarray.Get(x).GetValue<double>('SUBTOTAL'));
+
+      end;
+
+
+end;
+
 procedure Tfrmprincipal.ExibirDetalhe(ncomanda:integer);
 begin
 
@@ -205,7 +249,7 @@ begin
       Application.CreateForm(tfrmresumo,frmresumo);
 
    frmresumo.ncomanda         := ncomanda;
-   frmresumo.lblncomanda.Text := ncomanda.ToString;
+   frmresumo.lblncomanda.Text := formatfloat('00000',ncomanda);
 
    frmresumo.Show;
 
@@ -239,6 +283,10 @@ procedure Tfrmprincipal.FormShow(Sender: TObject);
 begin
 
 
+CarregarComandas;
+
+
+{
 addmapamesa(1,'Livre',0);
 addmapamesa(2,'Ocupada',50);
 addmapamesa(3,'Ocupada',70);
@@ -246,6 +294,9 @@ addmapamesa(4,'Livre',0);
 addmapamesa(5,'Livre',0);
 addmapamesa(6,'Ocupada',120);
 addmapamesa(7,'Ocupada',450);
+}
+
+
 end;
 
 procedure Tfrmprincipal.Image1Click(Sender: TObject);

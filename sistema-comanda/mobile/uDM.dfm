@@ -2,7 +2,7 @@ object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 313
-  Width = 273
+  Width = 521
   object Conn: TFDConnection
     Params.Strings = (
       
@@ -12,12 +12,62 @@ object DM: TDM
       'LockingMode=Normal'
       'DriverID=SQLite')
     LoginPrompt = False
-    Left = 80
-    Top = 56
+    Left = 32
+    Top = 16
   end
   object Query: TFDQuery
     Connection = Conn
-    Left = 152
-    Top = 104
+    Left = 120
+    Top = 16
+  end
+  object RESTClient: TRESTClient
+    Authenticator = HTTPBasicAuth
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'utf-8, *;q=0.8'
+    BaseURL = 'http://localhost:8082'
+    Params = <>
+    RaiseExceptionOn500 = False
+    Left = 24
+    Top = 96
+  end
+  object RequestLogin: TRESTRequest
+    Client = RESTClient
+    Method = rmPOST
+    Params = <
+      item
+        Name = 'login'
+        Value = '99@99999.com.br'
+      end
+      item
+        Name = 'senha'
+        Value = 'c4ca4238a0b923820dcc509a6f75849b'
+      end>
+    Resource = 'login'
+    SynchronizedEvents = False
+    Left = 24
+    Top = 168
+  end
+  object HTTPBasicAuth: THTTPBasicAuthenticator
+    Username = 'adm'
+    Password = '123'
+    Left = 136
+    Top = 96
+  end
+  object RequestListarComandas: TRESTRequest
+    Client = RESTClient
+    Method = rmPOST
+    Params = <
+      item
+        Name = 'login'
+        Value = '99@99999.com.br'
+      end
+      item
+        Name = 'senha'
+        Value = 'c4ca4238a0b923820dcc509a6f75849b'
+      end>
+    Resource = 'listarcomandas'
+    SynchronizedEvents = False
+    Left = 136
+    Top = 168
   end
 end
