@@ -21,8 +21,6 @@ type
     HTTPBasicAuth: THTTPBasicAuthenticator;
     RequestListarComandas: TRESTRequest;
     RequestListarProdutos: TRESTRequest;
-    RequestListarGrupos: TRESTRequest;
-    RequestAddProdutoComanda: TRESTRequest;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -39,11 +37,6 @@ type
                             pagina:integer;
                             out jsonarray: tjsonarray;
                             out erro:string):boolean;
-
-
-    function listargrupos(out jsonarray:tjsonarray; out erro:string):boolean;
-
-    function addprodutocomanda( idcomanda:integer; idproduto:integer; obs:string; prve,prcu,qtde:double;out erro:string):boolean;
     { Public declarations }
   end;
 
@@ -55,65 +48,6 @@ implementation
 {%CLASSGROUP 'FMX.Controls.TControl'}
 
 {$R *.dfm}
-
-function TDM.addprodutocomanda(idcomanda, idproduto: integer; obs: string; prve,
-  prcu, qtde: double; out erro: string): boolean;
-var
-   json:string;
-   jsonObj:tjsonobject;
-begin
-   erro := '';
-
-
-   with RequestAddProdutoComanda do
-      begin
-
-        params.Clear;
-        AddParameter('cusuhash',hash,trestrequestparameterkind.pkGETorPOST);
-        AddParameter('qtde', formatfloat('0.000',qtde)  ,trestrequestparameterkind.pkGETorPOST);
-        AddParameter('prcu', formatfloat('0.00',prcu)  ,trestrequestparameterkind.pkGETorPOST);
-        AddParameter('prve', formatfloat('0.00',prve)  ,trestrequestparameterkind.pkGETorPOST);
-        //formatfloat('0.00',prve).Replace('',',').Replace('','.')
-
-        AddParameter('obs',obs,trestrequestparameterkind.pkGETorPOST);
-        AddParameter('idcomanda',idcomanda.ToString,trestrequestparameterkind.pkGETorPOST);
-        AddParameter('idproduto',idproduto.ToString,trestrequestparameterkind.pkGETorPOST);
-
-        Execute;
-
-
-        if response.StatusCode <> 200 then
-           begin
-
-             erro := 'Erro ao adicionar produto na comanda: '+response.StatusCode.ToString;
-             result := false;
-
-           end
-        else
-           begin
-
-             json := response.JSONValue.ToString;
-             jsonobj := tjsonobject.ParseJSONValue(tencoding.utf8.GetBytes(json),0) as tjsonobject;
-
-             if jsonobj.GetValue('Status').Value =  'Sucesso' then
-                begin
-
-                   result := true;
-                end
-             else
-                begin
-                   erro := jsonobj.GetValue('erro').Value;
-                   result := false;
-                end;
-
-
-
-           end;
-
-
-      end;
-
-end;
 
 procedure TDM.DataModuleCreate(Sender: TObject);
 begin
@@ -184,46 +118,6 @@ begin
            begin
 
              erro := 'Erro ao listar comandas: '+response.StatusCode.ToString;
-             result := false;
-
-
-           end
-        else
-           begin
-
-             json := response.JSONValue.ToString;
-             jsonArray := tjsonobject.ParseJSONValue(tencoding.utf8.GetBytes(json),0) as tjsonarray;
-
-             result := true;
-
-
-
-           end;
-
-
-      end;
-
-end;
-
-function TDM.listargrupos(out jsonarray: tjsonarray; out erro: string): boolean;
-var
-   json:string;
-
-begin
-   erro := '';
-
-
-   with RequestListarGrupos do
-      begin
-
-        params.Clear;
-        AddParameter('cusuhash',hash,trestrequestparameterkind.pkGETorPOST);
-        Execute;
-
-        if response.StatusCode <> 200 then
-           begin
-
-             erro := 'Erro ao listar grupo: '+response.StatusCode.ToString;
              result := false;
 
 

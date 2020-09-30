@@ -85,7 +85,7 @@ begin
         if response.StatusCode <> 200 then
            begin
 
-             erro := 'Erro ao adicionar produto na comanda: '+response.StatusCode.ToString;
+             erro := 'Erro ao validar login: '+response.StatusCode.ToString;
              result := false;
 
            end

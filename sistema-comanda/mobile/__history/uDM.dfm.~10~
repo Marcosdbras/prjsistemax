@@ -1,8 +1,8 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 448
-  Width = 600
+  Height = 313
+  Width = 521
   object Conn: TFDConnection
     Params.Strings = (
       
@@ -69,56 +69,5 @@ object DM: TDM
     SynchronizedEvents = False
     Left = 136
     Top = 168
-  end
-  object RequestListarProdutos: TRESTRequest
-    Client = RESTClient
-    Method = rmPOST
-    Params = <
-      item
-        Name = 'login'
-        Value = '99@99999.com.br'
-      end
-      item
-        Name = 'senha'
-        Value = 'c4ca4238a0b923820dcc509a6f75849b'
-      end>
-    Resource = 'listarprodutos'
-    SynchronizedEvents = False
-    Left = 272
-    Top = 168
-  end
-  object RequestListarGrupos: TRESTRequest
-    Client = RESTClient
-    Method = rmPOST
-    Params = <
-      item
-        Name = 'login'
-        Value = '99@99999.com.br'
-      end
-      item
-        Name = 'senha'
-        Value = 'c4ca4238a0b923820dcc509a6f75849b'
-      end>
-    Resource = 'listargrupos'
-    SynchronizedEvents = False
-    Left = 392
-    Top = 168
-  end
-  object RequestAddProdutoComanda: TRESTRequest
-    Client = RESTClient
-    Method = rmPOST
-    Params = <
-      item
-        Name = 'login'
-        Value = '99@99999.com.br'
-      end
-      item
-        Name = 'senha'
-        Value = 'c4ca4238a0b923820dcc509a6f75849b'
-      end>
-    Resource = 'addprodutocomanda'
-    SynchronizedEvents = False
-    Left = 32
-    Top = 264
   end
 end

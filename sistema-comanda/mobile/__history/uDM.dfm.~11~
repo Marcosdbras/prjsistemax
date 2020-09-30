@@ -82,43 +82,9 @@ object DM: TDM
         Name = 'senha'
         Value = 'c4ca4238a0b923820dcc509a6f75849b'
       end>
-    Resource = 'listarprodutos'
+    Resource = 'listarcomandas'
     SynchronizedEvents = False
     Left = 272
     Top = 168
-  end
-  object RequestListarGrupos: TRESTRequest
-    Client = RESTClient
-    Method = rmPOST
-    Params = <
-      item
-        Name = 'login'
-        Value = '99@99999.com.br'
-      end
-      item
-        Name = 'senha'
-        Value = 'c4ca4238a0b923820dcc509a6f75849b'
-      end>
-    Resource = 'listargrupos'
-    SynchronizedEvents = False
-    Left = 392
-    Top = 168
-  end
-  object RequestAddProdutoComanda: TRESTRequest
-    Client = RESTClient
-    Method = rmPOST
-    Params = <
-      item
-        Name = 'login'
-        Value = '99@99999.com.br'
-      end
-      item
-        Name = 'senha'
-        Value = 'c4ca4238a0b923820dcc509a6f75849b'
-      end>
-    Resource = 'addprodutocomanda'
-    SynchronizedEvents = False
-    Left = 32
-    Top = 264
   end
 end
