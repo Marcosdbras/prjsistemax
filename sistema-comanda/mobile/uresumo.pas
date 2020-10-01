@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.ListView.Types,
   FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView,
-  FMX.Layouts, FMX.Dialogservice;
+  FMX.Layouts, FMX.Dialogservice, System.json;
 
 type
   Tfrmresumo = class(TForm)
@@ -22,7 +22,7 @@ type
     rctencerrar: TRectangle;
     lblencerrar: TLabel;
     Rectangle2: TRectangle;
-    Label2: TLabel;
+    lbltotal: TLabel;
     lsvproduto: TListView;
     imgaddproduct: TImage;
     img_delete: TImage;
@@ -33,9 +33,11 @@ type
     procedure rctencerrarClick(Sender: TObject);
 
 
-    procedure AddProdutoListView(id:integer;qtde:double ;descricao:string;preco:double);
-    procedure ListaProduto;
+    procedure AddProdutoListView(id:integer;qtde:double ;descricao:string;subtotal:double);
+    procedure carregarProdutoComanda;
     procedure FormShow(Sender: TObject);
+
+
 
 
 
@@ -53,7 +55,7 @@ implementation
 
 {$R *.fmx}
 
-uses uadditem;
+uses uDM, uadditem;
 
 procedure Tfrmresumo.AddItem(ncomanda: integer);
 begin
@@ -67,7 +69,7 @@ begin
 end;
 
 procedure Tfrmresumo.AddProdutoListView(id: integer; qtde: double;
-  descricao: string; preco: double);
+  descricao: string; subtotal: double);
 begin
    with lsvproduto.Items.Add do
        begin
@@ -75,7 +77,7 @@ begin
           tag := id;
 
           TListItemText(  objects.FindDrawable('txtdescricao')).Text  :=   formatfloat('##0.000', qtde)+ ' X ' + descricao;
-          TListItemText(  objects.FindDrawable('txtpreco')).Text  := formatfloat('###,##0.00',qtde * preco);
+          TListItemText(  objects.FindDrawable('txtpreco')).Text  := formatfloat('###,##0.00',subtotal);
 
           TListItemImage(  objects.FindDrawable('imgdelete')).Bitmap := img_delete.Bitmap;
 
@@ -91,7 +93,7 @@ end;
 
 procedure Tfrmresumo.FormShow(Sender: TObject);
 begin
-  ListaProduto;
+  carregarProdutoComanda;
 end;
 
 procedure Tfrmresumo.Image1Click(Sender: TObject);
@@ -104,7 +106,55 @@ begin
   additem(ncomanda);
 end;
 
-procedure Tfrmresumo.ListaProduto;
+
+
+
+procedure Tfrmresumo.carregarProdutoComanda;
+var jsonarray:tjsonarray;
+    erro:string;
+    x:integer;
+    total:double;
+begin
+  total := 0;
+
+  lsvproduto.items.Clear;
+
+  if not dm.listarProdutosComanda(lblncomanda.Text.ToInteger,jsonarray,erro) then
+    begin
+
+      showmessage(erro);
+      exit;
+
+    end;
+
+  for x := 0 to jsonarray.Size - 1 do
+      begin
+         AddProdutolistview(jsonarray.Get(x).GetValue<integer>('CODIGO'),
+                            jsonarray.Get(x).GetValue<double>('QTDE'),
+                            jsonarray.Get(x).GetValue<string>('DESCRICAO'),
+                            jsonarray.Get(x).GetValue<double>('SUBTOTAL'));
+
+        total := total +  jsonarray.Get(x).GetValue<double>('SUBTOTAL');
+
+      end;
+
+
+  lbltotal.Text := formatfloat('###,###,##0.00',total);
+  jsonarray.DisposeOf;
+
+
+end;
+
+
+
+
+
+
+
+
+
+{
+procedure Tfrmresumo.carregarProdutoComanda;
  var
    x:integer;
 begin
@@ -116,6 +166,16 @@ for x := 1 to 10 do
   AddProdutolistview(x,x*1.598,'Produto '+x.ToString,x);
 
 end;
+
+}
+
+
+
+
+
+
+
+
 
 procedure Tfrmresumo.rctencerrarClick(Sender: TObject);
 begin

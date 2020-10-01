@@ -55,6 +55,7 @@ type
 
     procedure carregarComandas;
 
+
     procedure AddProdutoListView(id:integer;descricao:string;preco:double);
     procedure ListaProduto(ind_clear:boolean;busca:string);
 
@@ -239,8 +240,11 @@ begin
 
       end;
 
+  jsonarray.DisposeOf;
+
 
 end;
+
 
 procedure Tfrmprincipal.ExibirDetalhe(ncomanda:integer);
 begin

@@ -2,7 +2,7 @@ object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 448
-  Width = 600
+  Width = 757
   object Conn: TFDConnection
     Params.Strings = (
       
@@ -67,8 +67,8 @@ object DM: TDM
       end>
     Resource = 'listarcomandas'
     SynchronizedEvents = False
-    Left = 136
-    Top = 168
+    Left = 88
+    Top = 208
   end
   object RequestListarProdutos: TRESTRequest
     Client = RESTClient
@@ -84,7 +84,7 @@ object DM: TDM
       end>
     Resource = 'listarprodutos'
     SynchronizedEvents = False
-    Left = 272
+    Left = 168
     Top = 168
   end
   object RequestListarGrupos: TRESTRequest
@@ -101,8 +101,8 @@ object DM: TDM
       end>
     Resource = 'listargrupos'
     SynchronizedEvents = False
-    Left = 392
-    Top = 168
+    Left = 320
+    Top = 160
   end
   object RequestAddProdutoComanda: TRESTRequest
     Client = RESTClient
@@ -118,7 +118,58 @@ object DM: TDM
       end>
     Resource = 'addprodutocomanda'
     SynchronizedEvents = False
-    Left = 32
-    Top = 264
+    Left = 520
+    Top = 160
+  end
+  object RequestexcluirProdutoComanda: TRESTRequest
+    Client = RESTClient
+    Method = rmPOST
+    Params = <
+      item
+        Name = 'login'
+        Value = '99@99999.com.br'
+      end
+      item
+        Name = 'senha'
+        Value = 'c4ca4238a0b923820dcc509a6f75849b'
+      end>
+    Resource = 'excluirProdutoComanda'
+    SynchronizedEvents = False
+    Left = 272
+    Top = 56
+  end
+  object RequestEncerrarComanda: TRESTRequest
+    Client = RESTClient
+    Method = rmPOST
+    Params = <
+      item
+        Name = 'login'
+        Value = '99@99999.com.br'
+      end
+      item
+        Name = 'senha'
+        Value = 'c4ca4238a0b923820dcc509a6f75849b'
+      end>
+    Resource = 'encerrarcomanda'
+    SynchronizedEvents = False
+    Left = 448
+    Top = 56
+  end
+  object RequestListarProdutosComanda: TRESTRequest
+    Client = RESTClient
+    Method = rmPOST
+    Params = <
+      item
+        Name = 'login'
+        Value = '99@99999.com.br'
+      end
+      item
+        Name = 'senha'
+        Value = 'c4ca4238a0b923820dcc509a6f75849b'
+      end>
+    Resource = 'listarprodutoscomanda'
+    SynchronizedEvents = False
+    Left = 408
+    Top = 192
   end
 end

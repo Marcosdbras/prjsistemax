@@ -23,10 +23,14 @@ type
     RequestListarProdutos: TRESTRequest;
     RequestListarGrupos: TRESTRequest;
     RequestAddProdutoComanda: TRESTRequest;
+    RequestexcluirProdutoComanda: TRESTRequest;
+    RequestEncerrarComanda: TRESTRequest;
+    RequestListarProdutosComanda: TRESTRequest;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
+    { Public declarations }
      hash:string;
 
     function login(out erro:string;login,senha:string):boolean;
@@ -40,11 +44,18 @@ type
                             out jsonarray: tjsonarray;
                             out erro:string):boolean;
 
+    function listarProdutosComanda(idcomanda:integer;  out jsonarray:tjsonarray;   out erro:string):boolean;
+
 
     function listargrupos(out jsonarray:tjsonarray; out erro:string):boolean;
 
     function addprodutocomanda( idcomanda:integer; idproduto:integer; obs:string; prve,prcu,qtde:double;out erro:string):boolean;
-    { Public declarations }
+
+    function excluirProdutoComanda(codigocomandaitem:integer; out erro:string):boolean;
+
+
+    function encerrarComanda(idcomanda:integer; out erro:string):boolean;
+
   end;
 
 var
@@ -164,6 +175,104 @@ with Conn do
 
 end;
 
+
+
+function TDM.encerrarComanda(idcomanda: integer; out erro: string): boolean;
+var
+   json:string;
+   jsonObj:tjsonobject;
+begin
+   erro := '';
+
+
+   with RequestEncerrarComanda do
+      begin
+
+        params.Clear;
+        AddParameter('cusuhash',hash,trestrequestparameterkind.pkGETorPOST);
+        AddParameter('idcomanda',idcomanda.ToString,trestrequestparameterkind.pkGETorPOST);
+        Execute;
+
+
+        if response.StatusCode <> 200 then
+           begin
+
+             erro := 'Erro ao encerrar comanda: '+response.StatusCode.ToString;
+             result := false;
+
+           end
+        else
+           begin
+
+             json := response.JSONValue.ToString;
+             jsonobj := tjsonobject.ParseJSONValue(tencoding.utf8.GetBytes(json),0) as tjsonobject;
+
+             if jsonobj.GetValue('Status').Value =  'Sucesso' then
+                begin
+                   result := true;
+                end
+             else
+                begin
+                   erro := jsonobj.GetValue('erro').Value;
+                   result := false;
+                end;
+
+           end;
+
+
+      end;
+
+end;
+
+function TDM.excluirProdutoComanda(codigocomandaitem: integer;
+  out erro: string): boolean;
+
+var
+   json:string;
+   jsonObj:tjsonobject;
+begin
+   erro := '';
+
+
+   with RequestExcluirProdutoComanda do
+      begin
+
+        params.Clear;
+        AddParameter('cusuhash',hash,trestrequestparameterkind.pkGETorPOST);
+        AddParameter('codigocomandaitem',codigocomandaitem.ToString,trestrequestparameterkind.pkGETorPOST);
+        Execute;
+
+
+        if response.StatusCode <> 200 then
+           begin
+
+             erro := 'Erro ao excluir produto da comanda: '+response.StatusCode.ToString;
+             result := false;
+
+           end
+        else
+           begin
+
+             json := response.JSONValue.ToString;
+             jsonobj := tjsonobject.ParseJSONValue(tencoding.utf8.GetBytes(json),0) as tjsonobject;
+
+             if jsonobj.GetValue('Status').Value =  'Sucesso' then
+                begin
+                   result := true;
+                end
+             else
+                begin
+                   erro := jsonobj.GetValue('erro').Value;
+                   result := false;
+                end;
+
+           end;
+
+
+      end;
+
+end;
+
 function TDM.listarComandas(out jsonarray: tjsonarray;
                             out erro:string): boolean;
 var
@@ -259,8 +368,8 @@ begin
 
         params.Clear;
         AddParameter('termo_busca',termo_busca,trestrequestparameterkind.pkGETorPOST);
-        AddParameter('cgru',cgru,trestrequestparameterkind.pkGETorPOST);
-        AddParameter('pagina',cgru,trestrequestparameterkind.pkGETorPOST);
+        AddParameter('cgru',cgru.ToString,trestrequestparameterkind.pkGETorPOST);
+        AddParameter('pagina',pagina.ToString,trestrequestparameterkind.pkGETorPOST);
         AddParameter('cusuhash',hash,trestrequestparameterkind.pkGETorPOST);
         Execute;
 
@@ -268,6 +377,48 @@ begin
            begin
 
              erro := 'Erro ao listar produtos: '+response.StatusCode.ToString;
+             result := false;
+
+
+           end
+        else
+           begin
+
+             json := response.JSONValue.ToString;
+             jsonArray := tjsonobject.ParseJSONValue(tencoding.utf8.GetBytes(json),0) as tjsonarray;
+
+             result := true;
+
+
+
+           end;
+
+
+      end;
+
+end;
+
+function TDM.listarProdutosComanda(idcomanda: integer;
+  out jsonarray: tjsonarray; out erro: string): boolean;
+var
+   json:string;
+
+begin
+   erro := '';
+
+
+   with RequestListarProdutosComanda do
+      begin
+
+        params.Clear;
+        AddParameter('idcomanda',idcomanda.ToString,trestrequestparameterkind.pkGETorPOST);
+        AddParameter('cusuhash',hash,trestrequestparameterkind.pkGETorPOST);
+        Execute;
+
+        if response.StatusCode <> 200 then
+           begin
+
+             erro := 'Erro ao listar produtos comanda: '+response.StatusCode.ToString;
              result := false;
 
 
